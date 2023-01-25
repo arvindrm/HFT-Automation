@@ -73,8 +73,10 @@ public class DriverFactory {
 		// mvn clean install
 
 		String envName = System.getProperty("env");
+		String browserName = System.getProperty("browserName");
 		System.out.println("-----> Running test cases on environment----> " + envName);
-
+		System.out.println("-----> Running test cases on environment----> " + browserName);
+		
 		if (envName == null) {
 			System.out.println("No env is given...hence running it on default QA env....");
 			try {
