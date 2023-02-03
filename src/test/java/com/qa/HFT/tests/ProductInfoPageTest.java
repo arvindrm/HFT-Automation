@@ -44,10 +44,9 @@ public class ProductInfoPageTest extends BaseTest{
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
 		//prodInfoPage = resultsPage.selectProduct(searchkey);
 		//Thread.sleep(10000);
-		
 		String prodTitle = prodInfoPage.getProductHeader();
 		
-		System.out.println(prodTitle);
+		System.out.println("Product Title is  : " + prodTitle);
 		Assert.assertEquals(prodTitle, "20V Cordless 1/2 in. Drill/Driver Kit");
 	
 	}

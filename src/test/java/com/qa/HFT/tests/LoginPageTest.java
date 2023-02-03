@@ -13,8 +13,8 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 
-@Epic("Epic - 100: Design Login page for open cart shopping application")
-@Story("US - 101: Create login page functionality for open cart login page")
+@Epic(" Design Login page for HARBORFREIGHT TOOLS application")
+@Story(" Create login page functionality for HARBORFREIGHT TOOLS login page")
 public class LoginPageTest extends BaseTest {
 
 	
