@@ -21,7 +21,7 @@ public class RegPageTest extends  BaseTest{
 
 	public String getRandomEmail() {
 		Random random = new Random();
-		String email = "HFTautomation" + random.nextInt(5000) + "@mailinator.com";
+		String email = "HFTautomationD" + random.nextInt(5000) + "@mailinator.com";
 		return email;
 	}
 

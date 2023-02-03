@@ -68,7 +68,7 @@ public class LoginPage {
 
 	@Step("navigating to register page")
 	public RegPage navigateToRegisterPage() {
-		eleUtil.waitForElementVisible(popup,TimeUtil.DEFAULT_TIME_OUT).click();
+		//eleUtil.waitForElementVisible(popup,TimeUtil.DEFAULT_TIME_OUT).click();
 		eleUtil.doClick(registernow);
 		return new RegPage(driver);
 	}

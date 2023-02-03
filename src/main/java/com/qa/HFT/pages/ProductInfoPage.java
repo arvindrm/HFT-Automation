@@ -16,9 +16,10 @@ import com.qa.HFT.utils.TimeUtil;
 public class ProductInfoPage {
 
 	private WebDriver driver;
-	private ElementUtil eleUti;
+	private ElementUtil eleUtil;
 
-	private By productHeader = By.xpath("//h1[contains(@class,'product__title')]");
+	//private By productHeader = By.xpath("//h1[contains(@class,'product__title')]");
+	private By productHeader = By.xpath("//div[contains(@class,'product__info')]/h1");
 	private By productBrand = By.xpath("//div[contains(@class,'product__info')]/h4");
 	private By productMetaData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=1]/li");
 	private By productpriceData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=2]/li");
@@ -27,16 +28,18 @@ public class ProductInfoPage {
 
 	public ProductInfoPage(WebDriver driver) {
 		this.driver = driver;
-		eleUti = new ElementUtil(driver);
+		eleUtil = new ElementUtil(driver);
 	}
 
-	public String getProductHeader() {
-		return eleUti.doGetElementText(productHeader);
+	
+	  public String getProductHeader() { 
+		  return eleUtil.waitForElementPresence(productHeader,TimeUtil.LARGE_TIME_OUT).getText();
+	  }
+	 
 
-	}
-
-	public String getProductBrand() {
-		return eleUti.doGetElementText(productBrand);
+	
+	public String getProductBrand()  {
+		return eleUtil.waitForElementPresence(productBrand,TimeUtil.LARGE_TIME_OUT).getText();
 	}
 
 	public Map<String, String> getProductInformation() {
@@ -52,7 +55,7 @@ public class ProductInfoPage {
 
 //
 	private void getProductMetaData() {
-		List<WebElement> metaDataList = eleUti.getElements(productMetaData);
+		List<WebElement> metaDataList = eleUtil.getElements(productMetaData);
 		System.out.println("product meta data count--->" + metaDataList.size());
 
 		for (WebElement e : metaDataList) {
@@ -67,7 +70,7 @@ public class ProductInfoPage {
 	// $2,000.00 //0
 	// Ex Tax: $2,000.00 //1
 	private void getProductPriceData() {
-		List<WebElement> metaPriceList = eleUti.getElements(productpriceData);
+		List<WebElement> metaPriceList = eleUtil.getElements(productpriceData);
 		System.out.println("product price count--->" + metaPriceList.size());
 		String price = metaPriceList.get(0).getText().trim();
 		String ExTaxPrice = metaPriceList.get(1).getText().trim();
@@ -75,6 +78,11 @@ public class ProductInfoPage {
 		productMap.put("actualprice", price);
 		productMap.put("actualtaxprice", ExTaxPrice);
 
+	}
+
+	public static String getSearchSKUTitle(String productName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

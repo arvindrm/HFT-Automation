@@ -12,7 +12,7 @@
 	</listeners>
 
 	<test name="Login Page Test">
-		
+
 		<classes>
 			<class name="com.qa.HFT.tests.LoginPageTest">
 				<methods>
@@ -25,8 +25,8 @@
 		</classes>
 
 	</test>
-		<test name="Account Page Test">
-		
+	<test name="Account Page Test">
+
 		<classes>
 			<class name="com.qa.HFT.tests.AccountsPageTest">
 				<methods>
@@ -36,7 +36,28 @@
 		</classes>
 
 	</test>
+	<test name="Registration Page Test">
 
+		<classes>
+			<class name="com.qa.HFT.tests.RegPageTest">
+				<methods>
+					<include name="registerUserTest" />
+				</methods>
+			</class>
+		</classes>
+
+	</test>
+	<test name="ProductDescription Page Test">
+
+		<classes>
+			<class name="com.qa.HFT.tests.ProductInfoPageTest">
+			<methods>
+					<exclude name="productImagesTest" />
+				</methods>
+			</class>
+		</classes>
+
+	</test>
 
 
 

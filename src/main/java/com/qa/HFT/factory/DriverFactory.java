@@ -73,7 +73,7 @@ public class DriverFactory {
 		// mvn clean install
 
 		String envName = System.getProperty("env");
-		String browserName = System.getProperty("browserName");
+		String browserName = System.getProperty("browser");
 		System.out.println("-----> Running test cases on environment----> " + envName);
 		System.out.println("-----> Running test cases on environment----> " + browserName);
 		
@@ -119,7 +119,8 @@ public class DriverFactory {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		
 		return prop;
 	}
 	

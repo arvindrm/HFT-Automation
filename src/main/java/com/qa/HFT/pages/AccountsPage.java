@@ -20,7 +20,7 @@ public class AccountsPage {
 	private By accHeader = By.xpath("//h2[contains(@class,'customer')]");
 	private By searchIcon = By.name("Submit search");
 	private By logoutLink = By.xpath("//span[contains(@class,'nav-list')]");
-	private By accSecHeaders = By.cssSelector("div#content h2");
+	private By accSecHeaders = By.xpath("//ul[contains(@class,'nav-list')]/li");
 	
 	public AccountsPage(WebDriver driver) {
 		this.driver = driver;
@@ -39,7 +39,7 @@ public class AccountsPage {
 	}
 	
 	public boolean isSearchExist() {
-		return eleUtil.waitForElementVisible(search, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
+		return eleUtil.waitForElementVisible(searchIcon, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
 	
 	
@@ -52,6 +52,7 @@ public class AccountsPage {
 		List<String> secHeadersValList = new ArrayList<String>();
 		for(WebElement e : secHeadersList) {
 			String text = e.getText();
+			System.out.println(text);
 			secHeadersValList.add(text);
 		}
 		return secHeadersValList;
@@ -67,7 +68,27 @@ public class AccountsPage {
 	  } 
 	  return null; 
 	  }
+	  
+	  public ProductInfoPage SKUperformSearch(String productName) {
+	  System.out.println("product search for : " + productName);
+	  if(isSearchExist()) { 
+		  eleUtil.doSendKeys(search, productName);
+	  //eleUtil.doClick(searchIcon); 
+		  eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
+	  return new ProductInfoPage(driver); 
+	  } 
+	  return null; 
+	  }
 	 
+	  public ProductInfoPage performSKUSearch(String productName) {
+	  System.out.println("product search for : " + productName);
+	  if(isSearchExist()) { 
+		  eleUtil.doSendKeys(search, productName);
+	  eleUtil.doClick(searchIcon); 
+	  return new ProductInfoPage(driver); 
+	  } 
+	  return null; 
+	  }
 	
 	
 

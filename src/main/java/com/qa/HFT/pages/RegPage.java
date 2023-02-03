@@ -24,7 +24,7 @@ public class RegPage {
 	private By createAcctButton = By.xpath("//div[contains(@class,'myaccount-register')]/form/button");
 	
 
-	private By registerSuccessMesg = By.cssSelector("div#content h1");
+	private By registerSuccessMesg = By.xpath("//div[contains(@class,'orders')]/h3");
 	private By logoutLink = By.linkText("Logout");
 	
 	
@@ -35,7 +35,7 @@ public class RegPage {
 	}
 	
 	public boolean registerUser(String firstName, String lastName, 
-			String email, String telephone, String password) {		
+		String email, String telephone, String password) {		
 		eleUtil.waitForElementVisible(this.firstName, TimeUtil.DEFAULT_TIME_OUT).sendKeys(firstName);
 		eleUtil.doSendKeys(this.lastName, lastName);
 		eleUtil.doSendKeys(this.email, email);
@@ -52,14 +52,20 @@ public class RegPage {
 		
 		eleUtil.doClick(createAcctButton);
 		
-		String successMesg = eleUtil.waitForElementVisible(registerSuccessMesg, TimeUtil.DEFAULT_TIME_OUT).getText();
-		//System.out.println(successMesg);
+		System.out.println("Landed on Accounts page after registration");
 		
-		/*
-		 * if(successMesg.contains(AppConstants.ACCOUNT_REGISTER_SUCCESS_MESSG)) {
-		 * eleUtil.doClick(logoutLink); eleUtil.doClick(registerLink); return true; }
-		 * else { eleUtil.doClick(registerLink); }
-		 */
+		String successMesg = eleUtil.waitForElementVisible(registerSuccessMesg, TimeUtil.DEFAULT_TIME_OUT).getText();
+		System.out.println(successMesg);
+		
+		
+		  if(successMesg.contains(AppConstants.ACCOUNT_REGISTER_SUCCESS_MESSG)) {
+		  //eleUtil.doClick(logoutLink); 
+		  //eleUtil.doClick(registerLink); 
+		  return true; 
+		  }
+		  //else { eleUtil.doClick(registerLink); 
+		  //}
+		 
 		return false;	
 			}
 

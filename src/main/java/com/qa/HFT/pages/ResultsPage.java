@@ -12,7 +12,8 @@ public class ResultsPage {
 	private WebDriver driver;
 	private ElementUtil eleUtil;
 	
-	private By searchProducts = By.cssSelector("div.product-layout");
+	private By searchProducts = By.xpath("//div[contains(@class,'grid__wrapper')]/ul/li");
+	private By productHeader = By.xpath("//h1[contains(@class,'product__title')]");
 	
 	public ResultsPage(WebDriver driver) {
 		this.driver = driver;
@@ -21,11 +22,12 @@ public class ResultsPage {
 	
 
 	public String getSearchPageTitle(String productName) {
+		System.out.println("ResultsPage.java-getSearchPageTitle: " + productName);
 		return eleUtil.waitForTitleContains(productName, TimeUtil.DEFAULT_TIME_OUT);
 	}
 	
 	public int getSearchProductsCount() {
-		int productCount = eleUtil.waitForElementsVisible(searchProducts, TimeUtil.DEFAULT_TIME_OUT).size();
+		int productCount = eleUtil.waitForElementsVisible(searchProducts, TimeUtil.SMALL_TIME_OUT).size();
 		System.out.println("product search count : " + productCount);
 		return productCount;
 	}
