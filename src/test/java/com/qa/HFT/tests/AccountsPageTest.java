@@ -57,12 +57,13 @@ public class AccountsPageTest extends BaseTest {
 	}
 
 	//@DataProvider
-	/*
-	 * public Object[][] getProductName() { return new Object[][] { {"63531"},
-	 * //{"58632"}, //{"59168"}
-	 * 
-	 * }; }
-	 */
+	
+	  public Object[][] getProductName() { 
+		  return new Object[][] { {"63531"},
+	  //{"58632"}, //{"59168"}
+	  
+	  }; }
+	 
 	
 	//TDD
 	//@Test(dataProvider = "getProductName")

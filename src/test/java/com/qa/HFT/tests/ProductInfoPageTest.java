@@ -23,43 +23,50 @@ public class ProductInfoPageTest extends BaseTest{
 		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
 	}
 	
-	
+
 	
 	@DataProvider
-	public Object[][] getProductTestData() {
+	public Object[][] getProductTitleTestData() {
 		return new Object[][] {
-			{"63531", "20V Cordless 1/2 in. Drill/Driver Kit", "BAUER"},
+			{"63531", "20V Cordless 1/2 in. Drill/Driver Kit"},
+			{"58919", "7 in. Surface Grinding Dust Shroud"}
 	
-			
-		};
+			};
 	}
 	
 	
-	//@Test(dataProvider = "getProductTestData")
+	@Test(dataProvider = "getProductTitleTestData")
 	@Description("Verifying Product Title for SKU 63531")
 	@Severity(SeverityLevel.CRITICAL)
-	@Test
-	public void productHeaderTest( ) throws InterruptedException {
-		String searchkey ="63531";
+	public void productHeaderTest(String searchkey, String prodTitle )  {
+		//String searchkey ="63531";
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
 		//prodInfoPage = resultsPage.selectProduct(searchkey);
 		//Thread.sleep(10000);
-		String prodTitle = prodInfoPage.getProductHeader();
-		
-		System.out.println("Product Title is  : " + prodTitle);
-		Assert.assertEquals(prodTitle, "20V Cordless 1/2 in. Drill/Driver Kit");
+		String actProdTitle = prodInfoPage.getProductHeader();
+		System.out.println("Product Title is  : " + actProdTitle);
+		Assert.assertEquals(actProdTitle, prodTitle);
 	
+	}
+	
+	@DataProvider
+	public Object[][] getProductBrandTestData() {
+		return new Object[][] {
+			{"63531", "BAUER"},
+			{"58919", "HERCULES"}
+	
+			};
 	}
 	
 	@Description("Verifying Product Brand Name for SKU 63531")
 	@Severity(SeverityLevel.CRITICAL)
-	@Test
-	public void productBrandNameTest() {
-		String searchkey ="63531";
+	@Test(dataProvider = "getProductBrandTestData")
+	public void productBrandNameTest(String searchkey, String prodBrand) {
+		//String searchkey ="63531";
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
-		String prodBrandName = prodInfoPage.getProductBrand();
-		System.out.println("Product Brand Name is  : " + prodBrandName);
-		Assert.assertEquals(prodBrandName, "BAUER");
+		String actProdBrandName = prodInfoPage.getProductBrand();
+		System.out.println("Product Brand Name is  : " + actProdBrandName);
+		Assert.assertEquals(actProdBrandName, prodBrand);
 	}
 	
 	

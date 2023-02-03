@@ -21,6 +21,7 @@ public class ProductInfoPage {
 	//private By productHeader = By.xpath("//h1[contains(@class,'product__title')]");
 	private By productHeader = By.xpath("//div[contains(@class,'product__info')]/h1");
 	private By productBrand = By.xpath("//div[contains(@class,'product__info')]/h4");
+	private By prodBrandlink =By.xpath("//div[contains(@class,'product__info')]/p/span");
 	private By productMetaData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=1]/li");
 	private By productpriceData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=2]/li");
 
@@ -40,6 +41,10 @@ public class ProductInfoPage {
 	
 	public String getProductBrand()  {
 		return eleUtil.waitForElementPresence(productBrand,TimeUtil.LARGE_TIME_OUT).getText();
+	}
+	
+	public boolean prodBrandlinkExist() {
+		return eleUtil.waitForElementVisible(prodBrandlink, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
 
 	public Map<String, String> getProductInformation() {
@@ -84,5 +89,9 @@ public class ProductInfoPage {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
+
 
 }
