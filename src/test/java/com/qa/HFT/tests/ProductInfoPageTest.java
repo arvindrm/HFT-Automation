@@ -12,6 +12,8 @@ import com.qa.HFT.utils.AppConstants;
 import com.qa.HFT.utils.AppErrors;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 
 public class ProductInfoPageTest extends BaseTest{
 	
@@ -35,6 +37,7 @@ public class ProductInfoPageTest extends BaseTest{
 	
 	//@Test(dataProvider = "getProductTestData")
 	@Description("Verifying Product Title for SKU 63531")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test
 	public void productHeaderTest( ) throws InterruptedException {
 		String searchkey ="63531";
@@ -50,6 +53,7 @@ public class ProductInfoPageTest extends BaseTest{
 	}
 	
 	@Description("Verifying Product Brand Name for SKU 63531")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test
 	public void productBrandNameTest() {
 		String searchkey ="63531";

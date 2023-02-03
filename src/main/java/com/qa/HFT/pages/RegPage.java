@@ -42,21 +42,13 @@ public class RegPage {
 		eleUtil.doSendKeys(this.password, password);
 		eleUtil.doSendKeys(this.confirmpassword, password);
 		eleUtil.doClick(this.telephone);
-		//eleUtil.doSendKeys(Keys.ENTER);
 		eleUtil.doSendKeys(this.telephone,telephone);
-		/*
-		 * for (int i = 0; i < telephone.length(); i++){ char c = telephone.charAt(i);
-		 * String s = new StringBuilder().append(c).toString();
-		 * eleUtil.doActionsSendKeys(this.telephone, s); }
-		 */
-		
 		eleUtil.doClick(createAcctButton);
 		
 		System.out.println("Landed on Accounts page after registration");
 		
 		String successMesg = eleUtil.waitForElementVisible(registerSuccessMesg, TimeUtil.DEFAULT_TIME_OUT).getText();
 		System.out.println(successMesg);
-		
 		
 		  if(successMesg.contains(AppConstants.ACCOUNT_REGISTER_SUCCESS_MESSG)) {
 		  //eleUtil.doClick(logoutLink); 

@@ -53,10 +53,6 @@ public class LoginPage {
 	@Step("login with username : {0} and password: {1}")
 	public AccountsPage doLogin(String un, String pwd) {
 		System.out.println("Creds are : " + un + " : " + pwd + "434");
-		
-		/*
-		 * if(popupExist()) { eleUtil.doClick(popup); }
-		 */
 		eleUtil.waitForElementVisible(emailId, TimeUtil.DEFAULT_TIME_OUT).sendKeys(un);
 		eleUtil.doSendKeys(password, pwd);
 		eleUtil.doClick(loginBtn);

@@ -29,9 +29,6 @@
 
 		<classes>
 			<class name="com.qa.HFT.tests.AccountsPageTest">
-				<methods>
-					<include name="accPageHeaderTest" />
-				</methods>
 			</class>
 		</classes>
 
@@ -40,9 +37,6 @@
 
 		<classes>
 			<class name="com.qa.HFT.tests.RegPageTest">
-				<methods>
-					<include name="registerUserTest" />
-				</methods>
 			</class>
 		</classes>
 
