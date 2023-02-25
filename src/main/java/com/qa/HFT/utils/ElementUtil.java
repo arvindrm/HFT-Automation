@@ -20,6 +20,9 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 
 import com.qa.HFT.factory.DriverFactory;
 
@@ -481,6 +484,53 @@ public class ElementUtil {
 		}
 
 	}
+	
+	
+
+
+	public void httpLinkChecker()
+	{
+
+		try {
+		
+		List<WebElement> AllLinks= driver.findElements(By.tagName("a"));
+		
+		
+		for (WebElement ele: AllLinks)
+		{
+			System.out.println(ele.getText());
+		}
+		
+		
+		System.out.println(AllLinks.size());
+		for (int i=0;i<AllLinks.size();i++)
+		{
+			WebElement ele=(WebElement) AllLinks.get(i);
+			String URL=ele.getAttribute("href");
+			URL NURL=new URL(URL);
+			HttpURLConnection UrlConn=(HttpURLConnection)NURL.openConnection();
+			UrlConn.setConnectTimeout(3000);
+			UrlConn.connect();
+			if (UrlConn.getResponseCode()!=200)
+			{
+				System.out.println("this URL is not working take action---> "+URL);
+			}
+			else
+			{
+				System.out.println("this URL is working-->" +URL);
+			}
+			
+		}
+		
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		}
+	
+	
+	
 	
 
 }
