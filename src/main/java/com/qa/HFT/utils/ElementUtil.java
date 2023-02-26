@@ -488,12 +488,10 @@ public class ElementUtil {
 	
 
 
-	public void httpLinkChecker()
-	{
-
+	public void httpLinkChecker(By locator) {
 		try {
 		
-		List<WebElement> AllLinks= driver.findElements(By.tagName("a"));
+		List<WebElement> AllLinks= driver.findElements(locator);;
 		
 		
 		for (WebElement ele: AllLinks)
