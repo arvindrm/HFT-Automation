@@ -1,5 +1,7 @@
 package com.qa.HFT.utils;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,9 +45,15 @@ public class ElementUtil {
 
 	public void doSendKeys(By locator, String value) {
 		WebElement ele = getElement(locator);
+		
+		if(ele.isEnabled()& ele.isDisplayed())
+		{
 		ele.clear();
 		ele.sendKeys(Keys.ENTER);
 		ele.sendKeys(value);
+		}else {
+			System.out.println("Element not visible or enabled");
+		}
 	}
 
 	public void doClick(By locator) {
@@ -477,10 +485,52 @@ public class ElementUtil {
 				System.out.println("page DOM is fully loaded now.....");
 				break;
 			}
+		}
 			
+	}
+		
+	public void httpLinkChecker()
+		{
+
+		try {
+
+		List<WebElement> AllLinks= driver.findElements(By.tagName("a"));
+
+
+		for (WebElement ele: AllLinks)
+		{
+		System.out.println(ele.getText());
 		}
 
-	}
+
+		System.out.println(AllLinks.size());
+		for (int i=0;i<AllLinks.size();i++)
+		{
+		WebElement ele=(WebElement) AllLinks.get(i);
+		String URL=ele.getAttribute("href");
+		URL NURL=new URL(URL);
+		HttpURLConnection UrlConn=(HttpURLConnection)NURL.openConnection();
+		UrlConn.setConnectTimeout(3000);
+		UrlConn.connect();
+		if (UrlConn.getResponseCode()!=200)
+		{
+		System.out.println("this URL is not working take action---> "+URL);
+		}
+		else
+		{
+		System.out.println("this URL is working-->" +URL);
+		}
+
+		}
+
+		}
+		catch(Exception e)
+		{
+		System.out.println(e);
+		}
+		}
+
+	
 	
 
 }
