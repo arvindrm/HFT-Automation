@@ -42,6 +42,8 @@ public class MyCartPage {
 	private WebDriver driver;
 	private ElementUtil eleUtil;
 	
+	public String searchItem="63531";
+	
 	
 	private By popup = By.xpath("//div[contains(@class,'dy-lb-close')]");
 	private By search = By.id("search-input");
@@ -96,7 +98,14 @@ public class MyCartPage {
 			eleUtil.doClick(addToCartOverLay);
 		}
 		
+		//in the test class call login functionality 
+		//and call below method will see how it goes
 		
+		public void addItemToCartFlow()
+		{
+			performSearch(searchItem);
+			addToCart();
+		}
 		
 		
 }
