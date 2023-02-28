@@ -16,6 +16,7 @@ public class MyCartPage {
 	//Login 
 	//search an item (63531)
 	//add an item to the cart
+	//overlay pop up 
 	//go to check out page
 	//enter details on check out page
 		//Shipping address
@@ -47,7 +48,9 @@ public class MyCartPage {
 	private By accHeader = By.xpath("//h2[contains(@class,'customer')]");
 	private By searchIcon = By.name("Submit search");
 	private By addCartBtn=By.xpath("//*[@id=\"product-wrap\"]/div[1]/div[3]/div[7]/button");
-	private By viewCartChkOBtn=By.xpath("//*[@id='product-wrap']/div[1]/div[3]/div[7]/div[2]/div[2]/div/div[2]/div[2]/a");
+	private By itemTextSearchPage=By.xpath("//a//p");
+	private By itemTextOverLay=By.xpath("//h3//a");
+	private By addToCartOverLay=By.xpath("//*[@id='product-wrap']/div[1]/div[3]/div[7]/div[2]/div[2]/div/div[2]/div[2]/a");
 	
 	
 	// 2. page constructor:
@@ -76,13 +79,21 @@ public class MyCartPage {
 		
 		//add an item to the cart
 		public void addToCart()
-		{			
-			eleUtil.doClick(addCartBtn);			
+		{	try {
+			String getElementTextSearchPage=eleUtil.doGetElementText(itemTextSearchPage);
+			eleUtil.doClick(addCartBtn);
+			String getElementTextOverlaypage=eleUtil.doGetElementText(itemTextOverLay);
+			eleUtil.stringAsserts(getElementTextSearchPage,getElementTextOverlaypage);			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();			
+		}
 		}
 		
-		public void veawCartCheckOutBtn()
+		public void viewCartCheckOutBtn()
 		{
-			eleUtil.doClick(viewCartChkOBtn);
+			eleUtil.doClick(addToCartOverLay);
 		}
 		
 		

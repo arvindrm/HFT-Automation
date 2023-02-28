@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.qa.HFT.factory.DriverFactory;
 
@@ -200,6 +201,13 @@ public class ElementUtil {
 	public void doActionsClick(By locator) {
 		Actions act = new Actions(driver);
 		act.click(getElement(locator)).build().perform();
+	}
+	
+	//--------------------Asserts-----------------------------//
+	
+	public void stringAsserts(String param1,String param2)
+	{
+		Assert.assertEquals(param1,param2);
 	}
 	
 	//*********************Wait Utils*****************//
