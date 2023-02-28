@@ -75,7 +75,7 @@ public class DriverFactory {
 		String envName = System.getProperty("env");
 		String browserName = System.getProperty("browser");
 		System.out.println("-----> Running test cases on environment----> " + envName);
-		System.out.println("-----> Running test cases on environment----> " + browserName);
+		System.out.println("-----> Running test cases on Browser----> " + browserName);
 		
 		if (envName == null) {
 			System.out.println("No env is given...hence running it on default QA env....");

@@ -69,11 +69,12 @@ public class AccountsPage {
 	  return null; 
 	  }
 	  
-	  public ProductInfoPage SKUperformSearch(String productName) {
+	  public ProductInfoPage SKUperformSearch(String productName) throws InterruptedException {
 	  System.out.println("product search for : " + productName);
 	  if(isSearchExist()) { 
 		  eleUtil.doSendKeys(search, productName);
 	  //eleUtil.doClick(searchIcon); 
+		  Thread.sleep(3000);
 		  eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
 	  return new ProductInfoPage(driver); 
 	  } 

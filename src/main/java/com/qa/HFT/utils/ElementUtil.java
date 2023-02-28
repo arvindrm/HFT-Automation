@@ -1,5 +1,8 @@
 package com.qa.HFT.utils;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +23,9 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+import org.testng.Assert;
+
+
 
 import com.qa.HFT.factory.DriverFactory;
 
@@ -46,9 +49,15 @@ public class ElementUtil {
 
 	public void doSendKeys(By locator, String value) {
 		WebElement ele = getElement(locator);
+		
+		if(ele.isEnabled()& ele.isDisplayed())
+		{
 		ele.clear();
 		ele.sendKeys(Keys.ENTER);
 		ele.sendKeys(value);
+		}else {
+			System.out.println("Element not visible or enabled");
+		}
 	}
 
 	public void doClick(By locator) {
@@ -195,6 +204,13 @@ public class ElementUtil {
 	public void doActionsClick(By locator) {
 		Actions act = new Actions(driver);
 		act.click(getElement(locator)).build().perform();
+	}
+	
+	//--------------------Asserts-----------------------------//
+	
+	public void stringAsserts(String param1,String param2)
+	{
+		Assert.assertEquals(param1,param2);
 	}
 	
 	//*********************Wait Utils*****************//
@@ -480,10 +496,52 @@ public class ElementUtil {
 				System.out.println("page DOM is fully loaded now.....");
 				break;
 			}
+		}
 			
+	}
+		
+	public void httpLinkChecker()
+		{
+
+		try {
+
+		List<WebElement> AllLinks= driver.findElements(By.tagName("a"));
+
+
+		for (WebElement ele: AllLinks)
+		{
+		System.out.println(ele.getText());
 		}
 
-	}
+
+		System.out.println(AllLinks.size());
+		for (int i=0;i<AllLinks.size();i++)
+		{
+		WebElement ele=(WebElement) AllLinks.get(i);
+		String URL=ele.getAttribute("href");
+		URL NURL=new URL(URL);
+		HttpURLConnection UrlConn=(HttpURLConnection)NURL.openConnection();
+		UrlConn.setConnectTimeout(3000);
+		UrlConn.connect();
+		if (UrlConn.getResponseCode()!=200)
+		{
+		System.out.println("this URL is not working take action---> "+URL);
+		}
+		else
+		{
+		System.out.println("this URL is working-->" +URL);
+		}
+
+		}
+
+		}
+		catch(Exception e)
+		{
+		System.out.println(e);
+		}
+		}
+
+	
 	
 	
 

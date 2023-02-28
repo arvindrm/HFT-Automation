@@ -11,7 +11,7 @@
 			class-name="com.qa.HFT.listeners.TestAllureListener" />
 	</listeners>
 
-	<test name="Login Page Test">
+<!-- 	<test name="Login Page Test">
 
 		<classes>
 			<class name="com.qa.HFT.tests.LoginPageTest">
@@ -24,23 +24,23 @@
 			</class>
 		</classes>
 
-	</test>
-	<test name="Account Page Test">
+	</test> -->
+	<!-- <test name="Account Page Test">
 
 		<classes>
 			<class name="com.qa.HFT.tests.AccountsPageTest">
 			</class>
 		</classes>
 
-	</test>
-	<test name="Registration Page Test">
+	</test> -->
+	<!-- <test name="Registration Page Test">
 
 		<classes>
 			<class name="com.qa.HFT.tests.RegPageTest">
 			</class>
 		</classes>
 
-	</test>
+	</test> -->
 	<test name="ProductDescription Page Test">
 
 		<classes>

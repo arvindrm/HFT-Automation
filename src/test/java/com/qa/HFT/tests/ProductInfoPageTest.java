@@ -38,7 +38,7 @@ public class ProductInfoPageTest extends BaseTest{
 	@Test(dataProvider = "getProductTitleTestData")
 	@Description("Verifying Product Title for SKU 63531")
 	@Severity(SeverityLevel.CRITICAL)
-	public void productHeaderTest(String searchkey, String prodTitle )  {
+	public void productHeaderTest(String searchkey, String prodTitle ) throws InterruptedException  {
 		//String searchkey ="63531";
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
 		//prodInfoPage = resultsPage.selectProduct(searchkey);
@@ -61,7 +61,7 @@ public class ProductInfoPageTest extends BaseTest{
 	@Description("Verifying Product Brand Name for SKU 63531")
 	@Severity(SeverityLevel.CRITICAL)
 	@Test(dataProvider = "getProductBrandTestData")
-	public void productBrandNameTest(String searchkey, String prodBrand) {
+	public void productBrandNameTest(String searchkey, String prodBrand) throws InterruptedException {
 		//String searchkey ="63531";
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
 		String actProdBrandName = prodInfoPage.getProductBrand();
