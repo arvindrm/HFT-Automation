@@ -11,7 +11,7 @@ import com.qa.HFT.utils.AppConstants;
 public class RegPage {
 	private WebDriver driver;
 	private ElementUtil eleUtil;
-	
+
 	// 1. private By locators:
 	private By createAcctlbl = By.xpath("//div[contains(@class,'myaccount-register')]/h2");
 	private By firstName = By.id("register-firstname");
@@ -22,43 +22,38 @@ public class RegPage {
 	private By confirmpassword = By.id("register-confirmation");
 	private By telephone = By.id("register-telephone");
 	private By createAcctButton = By.xpath("//div[contains(@class,'myaccount-register')]/form/button");
-	
 
 	private By registerSuccessMesg = By.xpath("//div[contains(@class,'orders')]/h3");
 	private By logoutLink = By.linkText("Logout");
-	
-	
-	
+
 	public RegPage(WebDriver driver) {
 		this.driver = driver;
 		eleUtil = new ElementUtil(driver);
 	}
-	
-	public boolean registerUser(String firstName, String lastName, 
-		String email, String telephone, String password) {		
+
+	public boolean registerUser(String firstName, String lastName, String email, String telephone, String password) {
 		eleUtil.waitForElementVisible(this.firstName, TimeUtil.DEFAULT_TIME_OUT).sendKeys(firstName);
 		eleUtil.doSendKeys(this.lastName, lastName);
 		eleUtil.doSendKeys(this.email, email);
 		eleUtil.doSendKeys(this.password, password);
 		eleUtil.doSendKeys(this.confirmpassword, password);
-		eleUtil.doClick(this.telephone);
-		eleUtil.doSendKeys(this.telephone,telephone);
+		eleUtil.doActionsSendKeys(this.telephone,telephone);
 		eleUtil.doClick(createAcctButton);
-		
+
 		System.out.println("Landed on Accounts page after registration");
-		
+
 		String successMesg = eleUtil.waitForElementVisible(registerSuccessMesg, TimeUtil.DEFAULT_TIME_OUT).getText();
 		System.out.println(successMesg);
-		
-		  if(successMesg.contains(AppConstants.ACCOUNT_REGISTER_SUCCESS_MESSG)) {
-		  //eleUtil.doClick(logoutLink); 
-		  //eleUtil.doClick(registerLink); 
-		  return true; 
-		  }
-		  //else { eleUtil.doClick(registerLink); 
-		  //}
-		 
-		return false;	
-			}
+
+		if (successMesg.contains(AppConstants.ACCOUNT_REGISTER_SUCCESS_MESSG)) {
+			// eleUtil.doClick(logoutLink);
+			// eleUtil.doClick(registerLink);
+			return true;
+		}
+		// else { eleUtil.doClick(registerLink);
+		// }
+
+		return false;
+	}
 
 }

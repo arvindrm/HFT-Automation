@@ -15,96 +15,72 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 
-public class ProductInfoPageTest extends BaseTest{
-	
-	
+public class ProductInfoPageTest extends BaseTest {
+
 	@BeforeClass
 	public void prodInfoSetup() {
 		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
 	}
-	
 
-	
 	@DataProvider
 	public Object[][] getProductTitleTestData() {
-		return new Object[][] {
-			{"63531", "20V Cordless 1/2 in. Drill/Driver Kit"},
-			{"58919", "7 in. Surface Grinding Dust Shroud"}
-	
-			};
+		return new Object[][] { { "63531", "20V Cordless 1/2 in. Drill/Driver Kit" },
+				{ "58919", "7 in. Surface Grinding Dust Shroud" }
+
+		};
 	}
-	
-	
+
 	@Test(dataProvider = "getProductTitleTestData")
 	@Description("Verifying Product Title for SKU 63531")
 	@Severity(SeverityLevel.CRITICAL)
-	public void productHeaderTest(String searchkey, String prodTitle ) throws InterruptedException  {
-		//String searchkey ="63531";
+	public void productHeaderTest(String searchkey, String prodTitle) throws InterruptedException {
+		// String searchkey ="63531";
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
-		//prodInfoPage = resultsPage.selectProduct(searchkey);
-		//Thread.sleep(10000);
+		// prodInfoPage = resultsPage.selectProduct(searchkey);
+		// Thread.sleep(10000);
 		String actProdTitle = prodInfoPage.getProductHeader();
-		System.out.println("Product Title is  : " + actProdTitle);
+		System.out.println("SKU id : " + searchkey + " Title is  : " + actProdTitle);
 		Assert.assertEquals(actProdTitle, prodTitle);
-	
+
 	}
-	
+
 	@DataProvider
 	public Object[][] getProductBrandTestData() {
-		return new Object[][] {
-			{"63531", "BAUER"},
-			{"58919", "HERCULES"}
-	
-			};
+		return new Object[][] { { "59135", "PREDATOR" }
+
+		};
 	}
-	
-	@Description("Verifying Product Brand Name for SKU 63531")
-	@Severity(SeverityLevel.CRITICAL)
+
 	@Test(dataProvider = "getProductBrandTestData")
+	@Description("Verifying Product Brand Name for SKUs")
+	@Severity(SeverityLevel.CRITICAL)
+
 	public void productBrandNameTest(String searchkey, String prodBrand) throws InterruptedException {
-		//String searchkey ="63531";
+		System.out.println("Product Brand Name is  : ");
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
 		String actProdBrandName = prodInfoPage.getProductBrand();
 		System.out.println("Product Brand Name is  : " + actProdBrandName);
 		Assert.assertEquals(actProdBrandName, prodBrand);
 	}
-	
-	
-	/*
-	 * @DataProvider public Object[][] getProductImagesTestData() { return new
-	 * Object[][] { {"63531", "20V Cordless 1/2 in. Drill/Driver Kit", "BAUER"},
-	 * {"58632", "5 in. Fiber Disc Backing Pad","HERCULES"}, {"59168",
-	 * "7 in. Diagonal Cutter"},
-	 * 
-	 * }; }
-	 * 
-	 * @Test(dataProvider = "getProductImagesTestData") public void
-	 * productImagesTest(String searchkey, String mainProductName, int imageCount) {
-	 * resultsPage = accPage.performSearch(searchkey); prodInfoPage =
-	 * resultsPage.selectProduct(mainProductName); //int actImagesCount =
-	 * prodInfoPage.getProductImagesCount(); //Assert.assertEquals(actImagesCount,
-	 * imageCount);
-	 * 
-	 * }
-	 */
-	
-	
-	
-	/*
-	 * @Test public void productMetaDataTest() { resultsPage =
-	 * accPage.performSearch("63531"); prodInfoPage =
-	 * resultsPage.selectProduct("20V Cordless 1/2 in. Drill/Driver Kit");
-	 * Map<String, String> actProdInfoMap = prodInfoPage.getProductInformation();
-	 * 
-	 * softAssert.assertEquals(actProdInfoMap.get("Brand"), "Apple");
-	 * softAssert.assertEquals(actProdInfoMap.get("Availability"), "In Stock");
-	 * softAssert.assertEquals(actProdInfoMap.get("actualprice"), "$2,000.00");
-	 * softAssert.assertEquals(actProdInfoMap.get("Reward Points"), "800");
-	 * softAssert.assertAll();
-	 * 
-	 * }
-	 */
-	
-	
+
+	@DataProvider
+	public Object[][] getProductAddToCartTestData() {
+		return new Object[][] { { "56381", "ICON" }
+
+		};
+	}
+
+	@Test(dataProvider = "getProductAddToCartTestData")
+	@Description("Verifying Product is Add to cart")
+	@Severity(SeverityLevel.CRITICAL)
+
+	public void productAddToCartTest(String searchkey, String prodBrand) throws InterruptedException {
+		System.out.println("Product Brand Name is  : ");
+		prodInfoPage = accPage.SKUperformSearch(searchkey);
+		myCartPage = prodInfoPage.performSKUSearch(prodBrand);
+		String myCartHeader = myCartPage.getMyCartPageHeader();
+		System.out.println("My Cart Text  : " + myCartHeader);
+		Assert.assertTrue(myCartHeader.contains("My Cart"));
+	}
 
 }

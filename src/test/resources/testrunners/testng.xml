@@ -16,10 +16,10 @@
 		<classes>
 			<class name="com.qa.HFT.tests.LoginPageTest">
 				<methods>
-					<exclude name="loginPageTitleTest" />
-					<exclude name="loginPageURLTest" />
-					<exclude name="forgotPwdLinkExistTest" />
-					<exclude name="loginTest" />
+					<include name="loginPageTitleTest" />
+					<include name="loginPageURLTest" />
+					<include name="forgotPwdLinkExistTest" />
+					<include name="loginTest" />
 				</methods>
 			</class>
 		</classes>
@@ -45,15 +45,25 @@
 
 		<classes>
 			<class name="com.qa.HFT.tests.ProductInfoPageTest">
-			<methods>
+				<methods>
 					<exclude name="productImagesTest" />
 				</methods>
 			</class>
 		</classes>
 
 	</test>
+	<test name="MyCart Page Test">
 
+		<classes>
+			<class name="com.qa.HFT.tests.MyCartPageTest">
+				<methods>
+					<include name="productAddToCartTest" />
+					<include name="productTitleOnMyCartTest" />
+					<exclude name="productsDeleteMyCartTest" />
+				</methods>
+			</class>
+		</classes>
 
-
-
-</suite>
+	</test>
+	
+	</suite>

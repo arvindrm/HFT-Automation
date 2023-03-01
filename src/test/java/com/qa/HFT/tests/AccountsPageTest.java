@@ -56,33 +56,40 @@ public class AccountsPageTest extends BaseTest {
 		Assert.assertEquals(actHeadersList, AppConstants.EXPECTED_ACC_HEADERS_LIST);
 	}
 
-	//@DataProvider
+	@DataProvider
+	 public Object[][] getProductName() { 
+		  return new Object[][] {
+		  {"amazon.com", "Sorry, No Items Were Found."},
+		  {"lowes.com","Sorry, No Items Were Found."},
+		  {"harborfreight.com" , "Sorry, No Items Were Found."},
+		  {"Air co.presdor", "Sorry, No Items Were Found."},
+		  {"Online apotheek", "Sorry, No Items Found For \"Online Apotheek\""},
+		  {"&", "Sorry, No Items Found For \"&\""}
 	
-	  public Object[][] getProductName() { 
-		  return new Object[][] { {"63531"},
-	  //{"58632"}, //{"59168"}
-	  
-	  }; }
+			};
+		  
+	  }
 	 
 	
 	//TDD
-	//@Test(dataProvider = "getProductName")
-	//public void productSearchTest(String productName) 
-	@Test
-	public void productSearchTest()
+	@Test(dataProvider = "getProductName")
+	public void productSearchTest(String productName, String searchResult) 
 	{
-		String productName="Driver kit";
 		resultsPage = accPage.performSearch(productName);
 		//String actTitle = resultsPage.getSearchPageTitle(productName);
+		//System.out.println("Product Title is  : " + actTitle);
+		String actSearchText= resultsPage.getSearchResultTxt();
+		System.out.println("Product search Result text  : " + actSearchText);
+		Assert.assertEquals(actSearchText,searchResult);
 		//System.out.println("search page title : " + actTitle);
 		//softAssert.assertEquals(actTitle, AppConstants.SEARCH_PAGE_TITLE+" "+productName);
-		Assert.assertTrue(resultsPage.getSearchProductsCount()>0);
+		//Assert.assertTrue(resultsPage.getSearchProductsCount()>0);
 	}
 	
 	public void productPDPSearchTest()
 	{
-		String productName="63531";
-		prodInfoPage = accPage.performSKUSearch(productName);
+		//String productName="63531";
+		//prodInfoPage = accPage.performSKUSearch(productName);
 		//String actTitle = ProductInfoPage.getSearchPageTitle(productName);
 		//System.out.println("search page title : " + actTitle);
 		//softAssert.assertEquals(actTitle, AppConstants.SEARCH_PAGE_TITLE+" "+productName);

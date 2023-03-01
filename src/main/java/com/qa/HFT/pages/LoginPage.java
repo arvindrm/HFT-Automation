@@ -21,8 +21,7 @@ public class LoginPage {
 	private By password = By.id("login-password");
 	private By loginBtn = By.xpath("//div[contains(@class,'button')]/button");
 	private By forgotPwdLink = By.xpath("//button[contains(@class,'link')]");
-	private By registernow= By.linkText("Register Now");
-
+	private By registernow = By.linkText("Register Now");
 
 	// 2. page constructor:
 	public LoginPage(WebDriver driver) {
@@ -45,7 +44,7 @@ public class LoginPage {
 	public boolean isforgotPWdLinkExist() {
 		return eleUtil.doIsDisplayed(forgotPwdLink);
 	}
-	
+
 	public boolean popupExist() {
 		return eleUtil.waitForElementVisible(popup, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
@@ -59,12 +58,10 @@ public class LoginPage {
 
 		return new AccountsPage(driver);
 	}
-	
-
 
 	@Step("navigating to register page")
 	public RegPage navigateToRegisterPage() {
-		//eleUtil.waitForElementVisible(popup,TimeUtil.DEFAULT_TIME_OUT).click();
+		// eleUtil.waitForElementVisible(popup,TimeUtil.DEFAULT_TIME_OUT).click();
 		eleUtil.doClick(registernow);
 		return new RegPage(driver);
 	}

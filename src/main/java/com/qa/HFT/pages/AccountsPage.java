@@ -12,45 +12,45 @@ import com.qa.HFT.utils.ElementUtil;
 import com.qa.HFT.utils.TimeUtil;
 
 public class AccountsPage {
-	
+
 	private WebDriver driver;
 	private ElementUtil eleUtil;
-	
+
 	private By search = By.id("search-input");
 	private By accHeader = By.xpath("//h2[contains(@class,'customer')]");
 	private By searchIcon = By.name("Submit search");
 	private By logoutLink = By.xpath("//span[contains(@class,'nav-list')]");
 	private By accSecHeaders = By.xpath("//ul[contains(@class,'nav-list')]/li");
-	
+
 	public AccountsPage(WebDriver driver) {
 		this.driver = driver;
 		eleUtil = new ElementUtil(driver);
 	}
-	
+
 	public String getAccPageTitle() {
 		return eleUtil.waitForTitleIs(AppConstants.ACCOUNTS_PAGE_TITLE, TimeUtil.DEFAULT_TIME_OUT);
 	}
-	
+
 	public String getAccPageURL() {
 		return eleUtil.waitForUrlContains(AppConstants.ACC_PAGE_FRACTION_URL, TimeUtil.DEFAULT_TIME_OUT);
 	}
+
 	public String getAccPageHeader() {
-		return eleUtil.waitForElementPresence(accHeader,TimeUtil.DEFAULT_TIME_OUT).getText();
+		return eleUtil.waitForElementPresence(accHeader, TimeUtil.DEFAULT_TIME_OUT).getText();
 	}
-	
+
 	public boolean isSearchExist() {
 		return eleUtil.waitForElementVisible(searchIcon, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
-	
-	
+
 	public boolean isLogoutExist() {
 		return eleUtil.waitForElementVisible(logoutLink, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
-	
+
 	public List<String> getAccountsPageSectionsHeaders() {
 		List<WebElement> secHeadersList = eleUtil.waitForElementsVisible(accSecHeaders, TimeUtil.DEFAULT_TIME_OUT);
 		List<String> secHeadersValList = new ArrayList<String>();
-		for(WebElement e : secHeadersList) {
+		for (WebElement e : secHeadersList) {
 			String text = e.getText();
 			System.out.println(text);
 			secHeadersValList.add(text);
@@ -58,39 +58,36 @@ public class AccountsPage {
 		return secHeadersValList;
 	}
 
-	
-	  public ResultsPage performSearch(String productName) {
-	  System.out.println("product search for : " + productName);
-	  if(isSearchExist()) { 
-		  eleUtil.doSendKeys(search, productName);
-	  eleUtil.doClick(searchIcon); 
-	  return new ResultsPage(driver); 
-	  } 
-	  return null; 
-	  }
-	  
-	  public ProductInfoPage SKUperformSearch(String productName) throws InterruptedException {
-	  System.out.println("product search for : " + productName);
-	  if(isSearchExist()) { 
-		  eleUtil.doSendKeys(search, productName);
-	  //eleUtil.doClick(searchIcon); 
-		  Thread.sleep(3000);
-		  eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
-	  return new ProductInfoPage(driver); 
-	  } 
-	  return null; 
-	  }
-	 
-	  public ProductInfoPage performSKUSearch(String productName) {
-	  System.out.println("product search for : " + productName);
-	  if(isSearchExist()) { 
-		  eleUtil.doSendKeys(search, productName);
-	  eleUtil.doClick(searchIcon); 
-	  return new ProductInfoPage(driver); 
-	  } 
-	  return null; 
-	  }
-	
-	
+	public ResultsPage performSearch(String productName) {
+		System.out.println("product search for : " + productName);
+		if (isSearchExist()) {
+			eleUtil.doSendKeys(search, productName);
+			eleUtil.doClick(searchIcon);
+			return new ResultsPage(driver);
+		}
+		return null;
+	}
+
+	public ProductInfoPage SKUperformSearch(String productName) throws InterruptedException {
+		System.out.println("product search for : " + productName);
+		if (isSearchExist()) {
+			eleUtil.doSendKeys(search, productName);
+			// eleUtil.doClick(searchIcon);
+			Thread.sleep(3000);
+			eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
+			return new ProductInfoPage(driver);
+		}
+		return null;
+	}
+
+	public ProductInfoPage performSKUSearch(String productName) {
+		System.out.println("product search for : " + productName);
+		if (isSearchExist()) {
+			eleUtil.doSendKeys(search, productName);
+			eleUtil.doClick(searchIcon);
+			return new ProductInfoPage(driver);
+		}
+		return null;
+	}
 
 }

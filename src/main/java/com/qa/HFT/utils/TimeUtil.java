@@ -5,9 +5,9 @@ public class TimeUtil {
 	public final static int DEFAULT_TIME_OUT = 15;
 
 	public final static int SMALL_TIME_OUT = 1000;
-	public final static long MEDIUM_TIME_OUT = 5000;
+	public final static int MEDIUM_TIME_OUT = 5000;
 	public final static int LARGE_TIME_OUT = 10000;
-	public final static long EXTRA_LARGE_TIME_OUT = 20000;
+	public final static int EXTRA_LARGE_TIME_OUT = 20000;
 
 	public static void smallWait() {
 		try {

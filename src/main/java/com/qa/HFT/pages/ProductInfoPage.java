@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.checkerframework.checker.units.qual.Time;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,12 +19,15 @@ public class ProductInfoPage {
 	private WebDriver driver;
 	private ElementUtil eleUtil;
 
-	//private By productHeader = By.xpath("//h1[contains(@class,'product__title')]");
+	// private By productHeader =
+	// By.xpath("//h1[contains(@class,'product__title')]");
 	private By productHeader = By.xpath("//div[contains(@class,'product__info')]/h1");
 	private By productBrand = By.xpath("//div[contains(@class,'product__info')]/h4");
-	private By prodBrandlink =By.xpath("//div[contains(@class,'product__info')]/p/span");
+	private By prodBrandlink = By.xpath("//div[contains(@class,'product__info')]/p/span");
 	private By productMetaData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=1]/li");
 	private By productpriceData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=2]/li");
+	private By productAddToCart = By.xpath("//div[contains(@class,'product__purchase')]/button");
+	private By overlayAddToCart = By.xpath("//div[contains(@class,'overlay__actions')]/a");
 
 	private Map<String, String> productMap;
 
@@ -32,19 +36,21 @@ public class ProductInfoPage {
 		eleUtil = new ElementUtil(driver);
 	}
 
-	
-	  public String getProductHeader() { 
-		  return eleUtil.waitForElementPresence(productHeader,TimeUtil.LARGE_TIME_OUT).getText();
-	  }
-	 
-
-	
-	public String getProductBrand()  {
-		return eleUtil.waitForElementPresence(productBrand,TimeUtil.LARGE_TIME_OUT).getText();
+	public String getProductHeader() {
+		return eleUtil.waitForElementPresence(productHeader, TimeUtil.LARGE_TIME_OUT).getText();
 	}
-	
+
+	public String getProductBrand() {
+		return eleUtil.waitForElementPresence(productBrand, TimeUtil.LARGE_TIME_OUT).getText();
+	}
+
 	public boolean prodBrandlinkExist() {
 		return eleUtil.waitForElementVisible(prodBrandlink, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
+
+	}
+
+	public boolean isAddToCartExist() {
+		return eleUtil.waitForElementVisible(productAddToCart, TimeUtil.MEDIUM_TIME_OUT).isDisplayed();
 	}
 
 	public Map<String, String> getProductInformation() {
@@ -85,13 +91,15 @@ public class ProductInfoPage {
 
 	}
 
-	public static String getSearchSKUTitle(String productName) {
-		// TODO Auto-generated method stub
+	public MyCartPage performSKUSearch(String productName) {
+		if (isAddToCartExist()) {
+			eleUtil.doClick(productAddToCart);
+			System.out.println("Clicked on Addtocart");
+			eleUtil.clickElementWhenReady(overlayAddToCart, TimeUtil.MEDIUM_TIME_OUT);
+			System.out.println("Clicked on overlayAddToCart");
+			return new MyCartPage(driver);
+		}
 		return null;
 	}
-
-
-	
-
 
 }
