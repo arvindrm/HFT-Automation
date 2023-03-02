@@ -28,12 +28,18 @@ public class ProductInfoPage {
 	private By productpriceData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=2]/li");
 	private By productAddToCart = By.xpath("//div[contains(@class,'product__purchase')]/button");
 	private By overlayAddToCart = By.xpath("//div[contains(@class,'overlay__actions')]/a");
-
+	private By searchIcon = By.name("Submit search");
+	private By search = By.id("search-input");
+	
 	private Map<String, String> productMap;
 
 	public ProductInfoPage(WebDriver driver) {
 		this.driver = driver;
 		eleUtil = new ElementUtil(driver);
+	}
+	
+	public boolean isSearchExist() {
+		return eleUtil.waitForElementVisible(searchIcon, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
 
 	public String getProductHeader() {
@@ -90,8 +96,21 @@ public class ProductInfoPage {
 		productMap.put("actualtaxprice", ExTaxPrice);
 
 	}
+	
+	public MyCartPage SKUperformSearch(String productName) throws InterruptedException {
+		System.out.println("product search for : " + productName);
+		if (isSearchExist()) {
+			eleUtil.doSendKeys(search, productName);
+			// eleUtil.doClick(searchIcon);
+			Thread.sleep(3000);
+			eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
+			return new MyCartPage(driver);
+		}
+		return null;
+	}
 
 	public MyCartPage performSKUSearch(String productName) {
+		System.out.println("I am here");
 		if (isAddToCartExist()) {
 			eleUtil.doClick(productAddToCart);
 			System.out.println("Clicked on Addtocart");

@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qa.HFT.base.BaseTest;
+import com.qa.HFT.pages.MyCartPage;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
@@ -14,7 +15,7 @@ public class MyCartPageTest extends BaseTest{
 	
 	@BeforeClass
 	public void accSetup() {
-		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+		prodInfoPage = loginPage.doLoginProd(prop.getProperty("username"), prop.getProperty("password"));
 	}
 	
 	@DataProvider public Object[][] getProductAddToCartTestData(){
@@ -27,9 +28,13 @@ public class MyCartPageTest extends BaseTest{
 	@Description("Verifying Product is Add to cart")
 	@Severity(SeverityLevel.CRITICAL)
 	
-	public void productAddToCartTest(String searchkey) {
-		prodInfoPage=myCartPage.performSearch(searchkey);
+	public void productAddToCartTest(String searchKey) throws InterruptedException {
+		//myCartPage.hello();
+		//myCartPage.addItemToCartFlow();
+		myCartPage=prodInfoPage.SKUperformSearch(searchKey);
+		Thread.sleep(3000);
 		myCartPage.addToCart();
+		myCartPage.viewCartCheckOutBtn();
 	}
 	
 	

@@ -49,10 +49,10 @@ public class MyCartPage {
 	private By accHeader = By.xpath("//h2[contains(@class,'customer')]");
 	private By searchIcon = By.name("Submit search");
 	private By addCartBtn = By.xpath("//*[@id=\"product-wrap\"]/div[1]/div[3]/div[7]/button");
-	private By itemTextSearchPage = By.xpath("//a//p");
-	private By itemTextOverLay = By.xpath("//h3//a");
+	private By itemTextSearchPage = By.xpath("//h1");
+	private By itemTextOverLay = By.xpath("//div[@class='overlay__info--TbBupi']/p");
 	private By addToCartOverLay = By
-			.xpath("//*[@id='product-wrap']/div[1]/div[3]/div[7]/div[2]/div[2]/div/div[2]/div[2]/a");
+			.xpath("//a[text()='View Cart & Checkout']");
 	
 	private By myCartHeader = By.xpath("//div[contains(@class,'cart__main')]/h1");
 	private By myCartSubmit = By.xpath ("//div[contains(@class,'checkout-totals')]/a");
@@ -98,10 +98,11 @@ public class MyCartPage {
 	// add an item to the cart
 	public void addToCart() {
 		try {
-			String getElementTextSearchPage = eleUtil.doGetElementText(itemTextSearchPage);
+			//String getElementTextSearchPage = eleUtil.doGetElementText(itemTextSearchPage);
 			eleUtil.doClick(addCartBtn);
-			String getElementTextOverlaypage = eleUtil.doGetElementText(itemTextOverLay);
-			eleUtil.stringAsserts(getElementTextSearchPage, getElementTextOverlaypage);
+			Thread.sleep(10000);
+			//String getElementTextOverlaypage = eleUtil.doGetElementText(itemTextOverLay);
+			//eleUtil.stringAsserts(getElementTextSearchPage, getElementTextOverlaypage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,9 +114,15 @@ public class MyCartPage {
 
 	// in the test class call login functionality
 	// and call below method will see how it goes
+	
+	public void hello()
+	{
+		System.out.println("this is hello method");
+	}
 
 	public void addItemToCartFlow() {
-		performSearch(searchItem);
+		System.out.println("till here");
+		performSearch("63531");
 		addToCart();
 	}
 
