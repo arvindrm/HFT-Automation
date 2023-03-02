@@ -48,11 +48,11 @@ public class MyCartPage {
 	private By search = By.id("search-input");
 	private By accHeader = By.xpath("//h2[contains(@class,'customer')]");
 	private By searchIcon = By.name("Submit search");
-	private By addCartBtn = By.xpath("//*[@id=\"product-wrap\"]/div[1]/div[3]/div[7]/button");
+	private By addCartBtn = By.xpath("//div[@data-testid='quantityWrap']//following-sibling::button");
 	private By itemTextSearchPage = By.xpath("//h1");
 	private By itemTextOverLay = By.xpath("//div[@class='overlay__info--TbBupi']/p");
-	private By addToCartOverLay = By
-			.xpath("//a[text()='View Cart & Checkout']");
+	private By addToCartOverLay = By.xpath("//a[text()='View Cart & Checkout']");
+	private By viewCartCheckout =By.xpath("//span[text()='Start Secure Checkout']");
 	
 	private By myCartHeader = By.xpath("//div[contains(@class,'cart__main')]/h1");
 	private By myCartSubmit = By.xpath ("//div[contains(@class,'checkout-totals')]/a");
@@ -100,7 +100,7 @@ public class MyCartPage {
 		try {
 			//String getElementTextSearchPage = eleUtil.doGetElementText(itemTextSearchPage);
 			eleUtil.doClick(addCartBtn);
-			Thread.sleep(10000);
+			Thread.sleep(15000);
 			//String getElementTextOverlaypage = eleUtil.doGetElementText(itemTextOverLay);
 			//eleUtil.stringAsserts(getElementTextSearchPage, getElementTextOverlaypage);
 		} catch (Exception e) {
@@ -124,6 +124,19 @@ public class MyCartPage {
 		System.out.println("till here");
 		performSearch("63531");
 		addToCart();
+	}
+	
+	public CheckOutPage SKUperformSearch(String productName) throws InterruptedException {
+		System.out.println("I m in MyCartPage " + productName);
+		if (isSearchExist()) {
+			
+			Thread.sleep(3000);
+			eleUtil.clickElementWhenReady(viewCartCheckout, TimeUtil.DEFAULT_TIME_OUT);
+			return new CheckOutPage(driver);
+			
+		}
+		return null;
+		//String className = this.getClass().getName();
 	}
 
 }

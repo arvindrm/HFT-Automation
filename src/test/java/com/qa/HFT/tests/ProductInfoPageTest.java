@@ -24,8 +24,9 @@ public class ProductInfoPageTest extends BaseTest {
 
 	@DataProvider
 	public Object[][] getProductTitleTestData() {
-		return new Object[][] { { "63531", "20V Cordless 1/2 in. Drill/Driver Kit" },
-				{ "58919", "7 in. Surface Grinding Dust Shroud" }
+		return new Object[][] { 
+			{ "63531", "20V Cordless 1/2 in. Drill/Driver Kit" },
+			{ "58919", "7 in. Surface Grinding Dust Shroud" }
 
 		};
 	}
@@ -63,6 +64,7 @@ public class ProductInfoPageTest extends BaseTest {
 		Assert.assertEquals(actProdBrandName, prodBrand);
 	}
 
+	
 	@DataProvider
 	public Object[][] getProductAddToCartTestData() {
 		return new Object[][] { { "56381", "ICON" }
@@ -75,7 +77,7 @@ public class ProductInfoPageTest extends BaseTest {
 	@Severity(SeverityLevel.CRITICAL)
 
 	public void productAddToCartTest(String searchkey, String prodBrand) throws InterruptedException {
-		System.out.println("Product Brand Name is  : ");
+		System.out.println("ProductinfoPageTest Brand Name is - productAddToCartTest : ");
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
 		myCartPage = prodInfoPage.performSKUSearch(prodBrand);
 		String myCartHeader = myCartPage.getMyCartPageHeader();

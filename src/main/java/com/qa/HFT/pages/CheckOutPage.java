@@ -39,7 +39,13 @@ public class CheckOutPage {
 	private WebDriver driver;
 	private ElementUtil eleUtil;
 	
-	private By addToCartOverLay=By.xpath("//*[@id='product-wrap']/div[1]/div[3]/div[7]/div[2]/div[2]/div/div[2]/div[2]/a");
+	//private By addToCartOverLay=By.xpath("//*[@id='product-wrap']/div[1]/div[3]/div[7]/div[2]/div[2]/div/div[2]/div[2]/a");
+	private By shippingAddress = By.xpath("//*[@id=\"root\"]/div[4]/div/div/div[1]/div[1]/form/div/div[2]/label");
+	private By shippingSaveButton = By.xpath("//button[text()='Save & Continue']");
+	private By deliveryMethod = By.xpath("//button[text()='Save & Continue']");
+	private By deliverySaveButton = By.xpath("//form//button");
+	
+	
 	
 	// 2. page constructor:
 			public CheckOutPage(WebDriver driver) {
@@ -47,10 +53,7 @@ public class CheckOutPage {
 				eleUtil = new ElementUtil(driver);
 			}
 	
-	
-	public void viewCartCheckOutBtn()
-	{
-		eleUtil.doClick(addToCartOverLay);
+	public void hello() {
+		System.out.println("hello");
 	}
-
 }

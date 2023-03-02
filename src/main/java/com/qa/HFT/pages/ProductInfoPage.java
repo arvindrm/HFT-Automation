@@ -99,23 +99,29 @@ public class ProductInfoPage {
 	
 	public MyCartPage SKUperformSearch(String productName) throws InterruptedException {
 		System.out.println("product search for : " + productName);
+		System.out.println("About to search SKU and click searc");
 		if (isSearchExist()) {
+			System.out.println("I am hereisSearchExist(");
 			eleUtil.doSendKeys(search, productName);
 			// eleUtil.doClick(searchIcon);
 			Thread.sleep(3000);
 			eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
 			return new MyCartPage(driver);
+			//return null;
+			
 		}
 		return null;
 	}
 
-	public MyCartPage performSKUSearch(String productName) {
+	public MyCartPage performSKUSearch(String productName) throws InterruptedException {
 		System.out.println("I am here");
+		Thread.sleep(4000);
 		if (isAddToCartExist()) {
 			eleUtil.doClick(productAddToCart);
 			System.out.println("Clicked on Addtocart");
 			eleUtil.clickElementWhenReady(overlayAddToCart, TimeUtil.MEDIUM_TIME_OUT);
 			System.out.println("Clicked on overlayAddToCart");
+			
 			return new MyCartPage(driver);
 		}
 		return null;

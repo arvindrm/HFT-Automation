@@ -40,7 +40,7 @@ public class RegPage {
 		eleUtil.doActionsSendKeys(this.telephone,telephone);
 		eleUtil.doClick(createAcctButton);
 
-		System.out.println("Landed on Accounts page after registration");
+		//System.out.println("Landed on Accounts page after registration");
 
 		String successMesg = eleUtil.waitForElementVisible(registerSuccessMesg, TimeUtil.DEFAULT_TIME_OUT).getText();
 		System.out.println(successMesg);
