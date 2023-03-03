@@ -9,9 +9,13 @@ import com.qa.HFT.base.BaseTest;
 import com.qa.HFT.pages.MyCartPage;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 
+@Epic(" Design MyCart page for HARBORFREIGHT TOOLS application")
+@Story(" Test MyCart page functionality for HARBORFREIGHT TOOLS MyCart page")
 public class MyCartPageTest extends BaseTest{
 	
 	@BeforeClass

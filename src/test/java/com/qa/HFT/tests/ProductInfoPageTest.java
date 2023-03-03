@@ -12,9 +12,13 @@ import com.qa.HFT.utils.AppConstants;
 import com.qa.HFT.utils.AppErrors;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 
+@Epic(" Design PDP page for HARBORFREIGHT TOOLS application")
+@Story(" Test PDP page functionality for HARBORFREIGHT TOOLS PDP page")
 public class ProductInfoPageTest extends BaseTest {
 
 	@BeforeClass

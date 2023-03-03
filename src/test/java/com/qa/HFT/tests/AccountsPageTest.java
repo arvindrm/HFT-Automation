@@ -12,6 +12,11 @@ import com.qa.HFT.pages.ProductInfoPage;
 import com.qa.HFT.utils.AppConstants;
 import com.qa.HFT.utils.AppErrors;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
+
+@Epic(" Design Accounts page for HARBORFREIGHT TOOLS application")
+@Story(" Testing Account page functionality for HARBORFREIGHT TOOLS Accounts page")
 public class AccountsPageTest extends BaseTest {
 
 	@BeforeClass
