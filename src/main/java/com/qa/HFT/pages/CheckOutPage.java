@@ -141,6 +141,7 @@ public class CheckOutPage {
 	}
 	
 	public WebElement doRewviewClick() {
+		eleUtil.switchToDefaultContentFromFrame(10);
 		return eleUtil.waitForElementPresence(ReviewPlaceOrderbtn, TimeUtil.LARGE_TIME_OUT);
 	}
 	
