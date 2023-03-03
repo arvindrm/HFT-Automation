@@ -98,20 +98,37 @@ public class CheckOutPage {
 	private By ReviewStepNo = By.xpath("//*[@id=\"step-title-4\"]/h2/span");
 	private By ReviewPlaceOrderbtn = By.xpath("//button[text()='Place My Order']");
 	
+	//secure checkout register as guest user	
+	private By fName = By.xpath("//input[@name='firstname']");
+	private By lName=By.xpath("//input[@name='lastname']");
+	private By emailAddress=By.xpath("//input[@name='email']");
+	private By company=By.xpath("//input[@name='company']");
+	private By address=By.xpath("//input[@name='street_1']");
+	private By zipCode=By.xpath("//input[@name='postcode']");
+	private By phone=By.xpath("//input[@name='telephone']");
+	private By city=By.xpath("//input[@name='city']");
+	private By selectCountry=By.xpath("//select[@name='region_id']");
+	private By saveAndContinueBtn=By.xpath("//button[text()='Save & Continue']");
+	
+	//payment method
+	
+	private By nameOnCard=By.xpath("//input[@id='cName']");
+	private By cardNumber =By.xpath("//input[@id='cNumber']");
+	private By securityCode=By.xpath("//div[@id='securityCode']//input");
+	private By exp=By.xpath("//div[@id='expdate']//input");
 	
 	
 	
 	
-
 	// 2. page constructor:
 	public CheckOutPage(WebDriver driver) {
 		this.driver = driver;
 		eleUtil = new ElementUtil(driver);
 	}
 
-	public void hello() {
-		System.out.println("hello");
-	}
+	
+	
+	
 	
 	public WebElement doCreateAddressClick() {
 		return eleUtil.waitForElementPresence(shippingAddressCreateNew, TimeUtil.LARGE_TIME_OUT);
@@ -133,6 +150,27 @@ public class CheckOutPage {
 	
 	}
 	
+	public void shippingRegister(String fnmVlu,String lnmVlu, String emlAddVlu,String comVlu, String addVle, String zCod, String ph)
+	{
+		eleUtil.doSendKeys(fName, fnmVlu);
+		eleUtil.doSendKeys(lName, lnmVlu);
+		eleUtil.doSendKeys(emailAddress, emlAddVlu);
+		eleUtil.doSendKeys(company, comVlu);
+		eleUtil.doSendKeys(address, addVle);
+		eleUtil.doSendKeys(zipCode, zCod);
+		eleUtil.doSendKeys(phone, ph);
+		eleUtil.clickElementWhenReady(saveAndContinueBtn, TimeUtil.LARGE_TIME_OUT);		
+	}
+	
+	public void paymentMethod(String nmOnCrd, String crdNum, String cvv, String expir)
+	{
+		eleUtil.doSendKeys(nameOnCard, nmOnCrd);
+		eleUtil.doSendKeys(cardNumber, crdNum);
+		eleUtil.doSendKeys(securityCode, cvv);
+		eleUtil.doSendKeys(exp, expir);
+		eleUtil.clickElementWhenReady(saveAndContinueBtn, TimeUtil.LARGE_TIME_OUT);
+	}
+	
 	
 	
 	public void paymentconfirmBtn() throws InterruptedException {
@@ -141,6 +179,9 @@ public class CheckOutPage {
 		eleUtil.switchToDefaultContentFromFrame(10);
 		eleUtil.clickElementWhenReady(paymentconfirmedSubmit, TimeUtil.LARGE_TIME_OUT);
 	}
+	
+	
+	
 	
 	public boolean enterShippingAddress(String firstName, String lastName, String Address, String telephone) {
 		eleUtil.waitForElementVisible(this.shippingFirstName, TimeUtil.DEFAULT_TIME_OUT).sendKeys(firstName);
