@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.qa.HFT.base.BaseTest;
 
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -14,7 +15,7 @@ public class CheckoutPageTest extends BaseTest{
 	
 	@BeforeClass
 	public void accSetup() {
-		prodInfoPage = loginPage.doLoginProd(prop.getProperty("username"), prop.getProperty("password"));
+		myCartPage = loginPage.doLoginCart(prop.getProperty("username"), prop.getProperty("password"));
 	}
 	
 	@DataProvider public Object[][] getProductAddToCartTestData(){
@@ -36,5 +37,8 @@ public class CheckoutPageTest extends BaseTest{
 		//myCartPage.viewCartCheckOutBtn();
 		checkOutPage.hello();
 	}
+	
+	
+	
 	
 }

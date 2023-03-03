@@ -59,6 +59,8 @@ public class MyCartPage {
 	private By myCartProductTitle = By.xpath("//div[contains(@class,'cart-items')]/h3");
 	private By myCartProductDelete =By.xpath("//div[contains(@class,'cart-items')]/ul/li[2]/button");
 	
+	private By CheckOutPageHeader = By.xpath("//div[contains(@class,'checkout-header')]/div/div/span");
+	
 	// 2. page constructor:
 	public MyCartPage(WebDriver driver) {
 		this.driver = driver;
@@ -84,6 +86,9 @@ public class MyCartPage {
 		return eleUtil.waitForElementPresence(myCartHeader,TimeUtil.MEDIUM_TIME_OUT).getText();
 	}
 	
+	public String getCheckOutPageHeader() {
+		return eleUtil.waitForElementPresence(CheckOutPageHeader,TimeUtil.MEDIUM_TIME_OUT).getText();
+	}
 	
 	
 	public String getMyCartProductTitle() {
@@ -92,6 +97,10 @@ public class MyCartPage {
 	
 	public void getMyCartProductDelete() {
 		return;
+	}
+	
+	public boolean isCheckoutBtnExist() {
+		return eleUtil.waitForElementVisible(viewCartCheckout, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
 	
 
@@ -126,16 +135,13 @@ public class MyCartPage {
 		addToCart();
 	}
 	
-	public CheckOutPage SKUperformSearch(String productName) throws InterruptedException {
-		System.out.println("I m in MyCartPage " + productName);
-		if (isSearchExist()) {
+	public void click() throws InterruptedException {
+		System.out.println("I m in MyCartPage click on secure checkout");
+		if (isCheckoutBtnExist()) {
 			
 			Thread.sleep(3000);
 			eleUtil.clickElementWhenReady(viewCartCheckout, TimeUtil.DEFAULT_TIME_OUT);
-			return new CheckOutPage(driver);
-			
 		}
-		return null;
 		//String className = this.getClass().getName();
 	}
 

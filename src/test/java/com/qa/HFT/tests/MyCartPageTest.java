@@ -1,5 +1,6 @@
 package com.qa.HFT.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -35,7 +36,10 @@ public class MyCartPageTest extends BaseTest{
 		Thread.sleep(10000);
 		myCartPage.addToCart();
 		myCartPage.viewCartCheckOutBtn();
+		myCartPage.click();
+		String checkOutHeader = myCartPage.getCheckOutPageHeader();
+		System.out.println("CheckOut page Text  : " + checkOutHeader);
+		Assert.assertTrue(checkOutHeader.contains("Secure Checkout"));
 	}
-	
-	
+		
 }

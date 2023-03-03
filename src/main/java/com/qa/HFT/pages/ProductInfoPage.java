@@ -99,9 +99,9 @@ public class ProductInfoPage {
 	
 	public MyCartPage SKUperformSearch(String productName) throws InterruptedException {
 		System.out.println("product search for : " + productName);
-		System.out.println("About to search SKU and click searc");
+		System.out.println("About to search SKU and click search");
 		if (isSearchExist()) {
-			System.out.println("I am hereisSearchExist(");
+			System.out.println("I am hereisSearchExist");
 			eleUtil.doSendKeys(search, productName);
 			// eleUtil.doClick(searchIcon);
 			Thread.sleep(3000);

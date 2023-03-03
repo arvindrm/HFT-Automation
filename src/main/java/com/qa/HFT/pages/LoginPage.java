@@ -68,6 +68,15 @@ public class LoginPage {
 		return new ProductInfoPage(driver);
 	}
 
+	@Step("login with username : {0} and password: {1}")
+	public MyCartPage doLoginCart(String un, String pwd) {
+		System.out.println("Creds are : " + un + " : " + pwd + "434");
+		eleUtil.waitForElementVisible(emailId, TimeUtil.DEFAULT_TIME_OUT).sendKeys(un);
+		eleUtil.doSendKeys(password, pwd);
+		eleUtil.doClick(loginBtn);
+
+		return new MyCartPage(driver);
+	}
 	@Step("navigating to register page")
 	public RegPage navigateToRegisterPage() {
 		// eleUtil.waitForElementVisible(popup,TimeUtil.DEFAULT_TIME_OUT).click();
