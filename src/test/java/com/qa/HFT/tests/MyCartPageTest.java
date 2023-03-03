@@ -16,34 +16,33 @@ import io.qameta.allure.Story;
 
 @Epic(" Design MyCart page for HARBORFREIGHT TOOLS application")
 @Story(" Test MyCart page functionality for HARBORFREIGHT TOOLS MyCart page")
-public class MyCartPageTest extends BaseTest{
-	
+public class MyCartPageTest extends BaseTest {
+
 	@BeforeClass
 	public void accSetup() {
 		prodInfoPage = loginPage.doLoginProd(prop.getProperty("username"), prop.getProperty("password"));
 	}
-	
-	@DataProvider public Object[][] getProductAddToCartTestData(){
-		return new Object[][] {
-			{"64113"}
-		};
+
+	@DataProvider
+	public Object[][] getProductAddToCartTestData() {
+		return new Object[][] { { "64113" } };
 	}
-	
+
 	@Test(dataProvider = "getProductAddToCartTestData")
 	@Description("Verifying Product is Added to cart")
 	@Severity(SeverityLevel.CRITICAL)
-	
+
 	public void productAddToCartTest(String searchKey) throws InterruptedException {
-		//myCartPage.hello();
-		//myCartPage.addItemToCartFlow();
-		myCartPage=prodInfoPage.SKUperformSearch(searchKey);
+		// myCartPage.hello();
+		// myCartPage.addItemToCartFlow();
+		myCartPage = prodInfoPage.SKUperformSearch(searchKey);
 		Thread.sleep(10000);
-		myCartPage.addToCart();
-		myCartPage.viewCartCheckOutBtn();
+		myCartPage.addCartCheckOutBtn().click();
+		myCartPage.viewCartCheckOutBtn().click();
 		myCartPage.click();
 		String checkOutHeader = myCartPage.getCheckOutPageHeader();
 		System.out.println("CheckOut page Text  : " + checkOutHeader);
 		Assert.assertTrue(checkOutHeader.contains("Secure Checkout"));
 	}
-		
+
 }

@@ -2,6 +2,7 @@ package com.qa.HFT.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -90,6 +91,10 @@ public class MyCartPage {
 	public boolean issecureCheckoutBtnExist() {
 		return eleUtil.waitForElementVisible(secureCheckout, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
+	
+	public WebElement addCartCheckOutBtn() {
+		return eleUtil.waitForElementPresence(addCartBtn,TimeUtil.MEDIUM_TIME_OUT);
+	}
 
 	// add an item to the cart
 	public void addToCart() {
@@ -105,21 +110,18 @@ public class MyCartPage {
 		}
 	}
 
-	public void viewCartCheckOutBtn() {
-		eleUtil.doClick(addToCartOverLay);
+	public WebElement viewCartCheckOutBtn() {
+		return eleUtil.waitForElementPresence(addToCartOverLay,TimeUtil.MEDIUM_TIME_OUT);
 	}
 
 	// in the test class call login functionality
 	// and call below method will see how it goes
 
-	public void hello() {
-		System.out.println("this is hello method");
-	}
 
 	public void addItemToCartFlow(String search) throws InterruptedException {
 		System.out.println("till here");
 		performSearch("63531");
-		addToCart();
+		//addToCart();
 	}
 
 	public void click() throws InterruptedException {
@@ -149,7 +151,7 @@ public class MyCartPage {
 	public void performSearch(String searchKey) throws InterruptedException {
 		System.out.println("I m in MyCartPage click on secure checkout");
 		if (isSearchExist()) {
-			System.out.println("I am hereisSearchExist");
+			System.out.println("I am in perform - SearchExist");
 			eleUtil.doSendKeys(search, searchKey);
 			// eleUtil.doClick(searchIcon);
 			Thread.sleep(3000);
@@ -171,7 +173,7 @@ public class MyCartPage {
 		System.out.println("product search for : " + productName);
 		System.out.println("About to search SKU and click search");
 		if (isSearchExist()) {
-			System.out.println("I am hereisSearchExist");
+			System.out.println("I am in SKUperformSearch - SearchExist");
 			eleUtil.doSendKeys(search, productName);
 			// eleUtil.doClick(searchIcon);
 			Thread.sleep(3000);

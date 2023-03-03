@@ -21,7 +21,7 @@ public class CheckoutPageTest extends BaseTest{
 	
 	@DataProvider public Object[][] getProductAddToCartTestData(){
 		return new Object[][] {
-			{"64113","Aravind","Mamilapally","599 calle de las ovejas", "3132128989"}
+			{"57324","Aravind","Mamilapally","599 calle de las ovejas", "3132128989"}
 		};
 	}
 	
@@ -29,13 +29,14 @@ public class CheckoutPageTest extends BaseTest{
 	@Description("Verifying Product is Add to cart")
 	@Severity(SeverityLevel.CRITICAL)
 	
-	public void productAddToCartTest(String searchKey,String firstName, String lastName, String Address, String telephone) throws InterruptedException {
+	public void checkOutTest(String searchKey,String firstName, String lastName, String Address, String telephone) throws InterruptedException {
 		//myCartPage.hello();
 		//myCartPage.addItemToCartFlow();
 		myCartPage.performSearch(searchKey);
-		Thread.sleep(10000);
-		myCartPage.addToCart();
-		myCartPage.viewCartCheckOutBtn();
+		Thread.sleep(5000);
+		System.out.println("after - performSearch()");
+		myCartPage.addCartCheckOutBtn().click();
+		myCartPage.viewCartCheckOutBtn().click();
 		checkOutPage =myCartPage.secureClick();
 		Thread.sleep(3000);
 		checkOutPage.doCreateAddressClick().click();
