@@ -101,7 +101,7 @@ public class ProductInfoPage {
 		System.out.println("product search for : " + productName);
 		System.out.println("About to search SKU and click search");
 		if (isSearchExist()) {
-			System.out.println("I am hereisSearchExist");
+			System.out.println("I am in ProdInfoPage - SKUperformSearch");
 			eleUtil.doSendKeys(search, productName);
 			// eleUtil.doClick(searchIcon);
 			Thread.sleep(3000);
