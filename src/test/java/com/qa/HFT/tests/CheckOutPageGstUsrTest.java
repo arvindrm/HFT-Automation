@@ -15,7 +15,7 @@ public class CheckOutPageGstUsrTest extends BaseTest{
 	@BeforeClass
 	public void accSetup() {
 		//myCartPage = loginPage.doLoginCart(prop.getProperty("username"), prop.getProperty("password"));
-		
+		dfactory.initDriver(prop);
 	}
 	
 	@DataProvider public Object[][] getProductAddToCartTestData(){
@@ -49,11 +49,14 @@ public class CheckOutPageGstUsrTest extends BaseTest{
 		Thread.sleep(3000);
 		checkOutPage.switchtoframe();
 		Thread.sleep(3000);
-		
+		System.out.println("afterswitchtoframe");
 		checkOutPage.paymentconfirmBtn();
-		Thread.sleep(10000);
-		checkOutPage.doRewviewClick();
-		Thread.sleep(30000);
+		System.out.println("afterpaymentconfirmBtn");
+		Thread.sleep(5000);
+		String reviewtxt = checkOutPage.doRewviewClick().getText();
+		System.out.println(reviewtxt);
+		checkOutPage.doRewviewClick().click();
+		Thread.sleep(6000);
 		
 		
 	}

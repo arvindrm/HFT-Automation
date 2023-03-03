@@ -31,6 +31,7 @@ public class BaseTest {
 	protected SoftAssert softAssert;
 	
 	protected Properties prop;
+	protected DriverFactory dfactory;
 	
 	
 	@BeforeTest

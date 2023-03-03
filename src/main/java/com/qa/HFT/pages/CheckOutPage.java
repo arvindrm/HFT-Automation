@@ -96,7 +96,8 @@ public class CheckOutPage {
 	//Review Section
 	private By ReviewLabel =  By.xpath("//*[@id=\"step-title-4\"]/h2");
 	private By ReviewStepNo = By.xpath("//*[@id=\"step-title-4\"]/h2/span");
-	private By ReviewPlaceOrderbtn = By.xpath("//button[text()='Place My Order']");
+	//private By ReviewPlaceOrderbtn = By.xpath("//button[text()='Place My Order']");
+	private By ReviewPlaceOrderbtn = By.xpath("//div[contains(@class,'checkout-review')]/button");
 	
 	//secure checkout register as guest user	
 	private By fName = By.xpath("//input[@name='firstname']");
@@ -141,13 +142,13 @@ public class CheckOutPage {
 	}
 	
 	public WebElement doRewviewClick() {
-		eleUtil.switchToDefaultContentFromFrame(10);
-		return eleUtil.waitForElementPresence(ReviewPlaceOrderbtn, TimeUtil.LARGE_TIME_OUT);
+		//eleUtil.switchToDefaultContentFromFrame(10);
+		return eleUtil.waitForElementPresence(ReviewPlaceOrderbtn, TimeUtil.MEDIUM_TIME_OUT);
 	}
 	
 	//waitForFramePresentAndSwitch
 	public void switchtoframe() {
-		eleUtil.waitForFramePresentAndSwitch(paymentconfirmedframe, 4000);
+		eleUtil.waitForFramePresentAndSwitch(paymentconfirmedframe, TimeUtil.DEFAULT_TIME_OUT);
 	
 	}
 	
