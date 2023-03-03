@@ -63,7 +63,13 @@
 				</methods>
 			</class>
 		</classes>
-
 	</test>
-	
-	</suite>
+	<test name="Checkout Page Test">
+
+		<classes>
+			<class name="com.qa.HFT.tests.CheckoutPageTest">
+			</class>
+		</classes>
+	</test>
+
+</suite>
