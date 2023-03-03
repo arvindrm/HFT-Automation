@@ -1,5 +1,6 @@
 package com.qa.HFT.tests;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -20,7 +21,7 @@ public class CheckoutPageTest extends BaseTest{
 	
 	@DataProvider public Object[][] getProductAddToCartTestData(){
 		return new Object[][] {
-			{"64113"}
+			{"64113","Aravind","Mamilapally","599 calle de las ovejas", "3132128989"}
 		};
 	}
 	
@@ -28,14 +29,34 @@ public class CheckoutPageTest extends BaseTest{
 	@Description("Verifying Product is Add to cart")
 	@Severity(SeverityLevel.CRITICAL)
 	
-	public void productAddToCartTest(String searchKey) throws InterruptedException {
+	public void productAddToCartTest(String searchKey,String firstName, String lastName, String Address, String telephone) throws InterruptedException {
 		//myCartPage.hello();
 		//myCartPage.addItemToCartFlow();
-		myCartPage=prodInfoPage.SKUperformSearch(searchKey);
+		myCartPage.performSearch(searchKey);
+		Thread.sleep(10000);
+		myCartPage.addToCart();
+		myCartPage.viewCartCheckOutBtn();
+		checkOutPage =myCartPage.secureClick();
 		Thread.sleep(3000);
+		checkOutPage.doCreateAddressClick().click();
+		//checkOutPage=myCartPage.SKUperformSearch(searchKey);
 		//myCartPage.addToCart();
 		//myCartPage.viewCartCheckOutBtn();
-		checkOutPage.hello();
+		//checkOutPage.
+		checkOutPage.enterShippingAddress(firstName, lastName, Address, telephone);
+		checkOutPage.doDeliveryMethodClick().click();
+		Thread.sleep(10000);
+		checkOutPage.doPaymentClick().click();
+		Thread.sleep(3000);
+		checkOutPage.switchtoframe();
+		Thread.sleep(3000);
+		
+		checkOutPage.paymentconfirmBtn();
+		Thread.sleep(10000);
+		checkOutPage.doRewviewClick();
+		Thread.sleep(30000);
+		
+		
 	}
 	
 	

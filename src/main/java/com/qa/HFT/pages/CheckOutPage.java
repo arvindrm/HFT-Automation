@@ -2,6 +2,7 @@ package com.qa.HFT.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.qa.HFT.utils.AppConstants;
 import com.qa.HFT.utils.ElementUtil;
@@ -77,11 +78,20 @@ public class CheckOutPage {
 	private By paymentMethodStepNo = By.xpath("//*[@id=\"step-title-3\"]/h2/span");
 	private By paymentEdit = By.id("//*[@id=\"step-title-3\"]/span");
 	private By paymentCardName=By.xpath("//input[@id='cName']");
-	private By PaymentCardNumber=By.xpath("//input[@id='cNumber']");
+	private By paymentCardNumber=By.xpath("//input[@id='cNumber']");
 	private By PaymentSecurityCode=By.xpath("//input[@id='secCode']");
 	private By PaymentExpDate = By.xpath("//input[@id='exDate']");
-	private By paymentSaveButton = By.xpath("//form//button");
+	private By paymentSaveButton = By.xpath("//button[text()='Save & Continue']");
 	private By paymentCCVerify = By.xpath("//div[contains(@class,'cardReminder')]");
+	
+	//save payment cards
+	private By paymentCCSaved = By.xpath("//strong[text()='ending in 1111']");
+	
+	//confirm security code pop up
+	private By paymentconfirmedCCV = By.xpath("//*[@id=\"secCode\"]");
+	//private By paymentconfirmedSubmit = By.xpath("//button[text()='Submit']");
+	private By paymentconfirmedSubmit = By.xpath("//div[contains(@class,'modal__modal-')]/section/div/button");
+	private By paymentconfirmedframe = By.xpath("//div[contains(@class,'confirm-security')]/iframe");
 	
 	//Review Section
 	private By ReviewLabel =  By.xpath("//*[@id=\"step-title-4\"]/h2");
@@ -103,11 +113,41 @@ public class CheckOutPage {
 		System.out.println("hello");
 	}
 	
+	public WebElement doCreateAddressClick() {
+		return eleUtil.waitForElementPresence(shippingAddressCreateNew, TimeUtil.LARGE_TIME_OUT);
+	}
+	public WebElement doDeliveryMethodClick() {
+		return eleUtil.waitForElementPresence(deliverySaveButton, TimeUtil.LARGE_TIME_OUT);
+	}
+	public WebElement doPaymentClick() {
+		return eleUtil.waitForElementPresence(paymentSaveButton, TimeUtil.LARGE_TIME_OUT);
+	}
+	
+	public WebElement doRewviewClick() {
+		return eleUtil.waitForElementPresence(ReviewPlaceOrderbtn, TimeUtil.LARGE_TIME_OUT);
+	}
+	
+	//waitForFramePresentAndSwitch
+	public void switchtoframe() {
+		eleUtil.waitForFramePresentAndSwitch(paymentconfirmedframe, 4000);
+	
+	}
+	
+	
+	
+	public void paymentconfirmBtn() throws InterruptedException {
+		eleUtil.doSendKeys(paymentconfirmedCCV, "111");
+		Thread.sleep(4000);
+		eleUtil.switchToDefaultContentFromFrame(10);
+		eleUtil.clickElementWhenReady(paymentconfirmedSubmit, TimeUtil.LARGE_TIME_OUT);
+	}
+	
 	public boolean enterShippingAddress(String firstName, String lastName, String Address, String telephone) {
 		eleUtil.waitForElementVisible(this.shippingFirstName, TimeUtil.DEFAULT_TIME_OUT).sendKeys(firstName);
 		eleUtil.doSendKeys(this.shippingLastName, lastName);
 		eleUtil.doSendKeys(this.shippingAddress, Address);
-		eleUtil.doSendKeys(this.shippingPhone, telephone);
+		eleUtil.doClick(shippingZipcode);
+		eleUtil.doActionsSendKeys(this.shippingPhone, telephone);
 		//eleUtil.doSendKeys(this.confirmpassword, password);
 		//eleUtil.doActionsSendKeys(this.telephone,telephone);
 		eleUtil.doClick(shippingSaveButton);

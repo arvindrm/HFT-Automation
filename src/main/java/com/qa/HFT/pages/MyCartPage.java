@@ -52,15 +52,15 @@ public class MyCartPage {
 	private By itemTextSearchPage = By.xpath("//h1");
 	private By itemTextOverLay = By.xpath("//div[@class='overlay__info--TbBupi']/p");
 	private By addToCartOverLay = By.xpath("//a[text()='View Cart & Checkout']");
-	private By viewCartCheckout =By.xpath("//span[text()='Start Secure Checkout']");
-	
+	private By secureCheckout = By.xpath("//span[text()='Start Secure Checkout']");
+
 	private By myCartHeader = By.xpath("//div[contains(@class,'cart__main')]/h1");
-	private By myCartSubmit = By.xpath ("//div[contains(@class,'checkout-totals')]/a");
+	private By myCartSubmit = By.xpath("//div[contains(@class,'checkout-totals')]/a");
 	private By myCartProductTitle = By.xpath("//div[contains(@class,'cart-items')]/h3");
-	private By myCartProductDelete =By.xpath("//div[contains(@class,'cart-items')]/ul/li[2]/button");
-	
+	private By myCartProductDelete = By.xpath("//div[contains(@class,'cart-items')]/ul/li[2]/button");
+
 	private By CheckOutPageHeader = By.xpath("//div[contains(@class,'checkout-header')]/div/div/span");
-	
+
 	// 2. page constructor:
 	public MyCartPage(WebDriver driver) {
 		this.driver = driver;
@@ -71,47 +71,35 @@ public class MyCartPage {
 		return eleUtil.waitForElementVisible(searchIcon, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
 
-	// search an item (63531)
-	public ProductInfoPage performSearch(String productName) {
-		System.out.println("product search for : " + productName);
-		if (isSearchExist()) {
-			eleUtil.doSendKeys(search, productName);
-			eleUtil.doClick(searchIcon);
-			return new ProductInfoPage(driver);
-		}
-		return null;
-	}
-	
 	public String getMyCartPageHeader() {
-		return eleUtil.waitForElementPresence(myCartHeader,TimeUtil.MEDIUM_TIME_OUT).getText();
+		return eleUtil.waitForElementPresence(myCartHeader, TimeUtil.MEDIUM_TIME_OUT).getText();
 	}
-	
+
 	public String getCheckOutPageHeader() {
-		return eleUtil.waitForElementPresence(CheckOutPageHeader,TimeUtil.MEDIUM_TIME_OUT).getText();
+		return eleUtil.waitForElementPresence(CheckOutPageHeader, TimeUtil.MEDIUM_TIME_OUT).getText();
 	}
-	
-	
+
 	public String getMyCartProductTitle() {
-		return eleUtil.waitForElementPresence(myCartProductTitle,TimeUtil.MEDIUM_TIME_OUT).getText();
+		return eleUtil.waitForElementPresence(myCartProductTitle, TimeUtil.MEDIUM_TIME_OUT).getText();
 	}
-	
+
 	public void getMyCartProductDelete() {
 		return;
 	}
-	
-	public boolean isCheckoutBtnExist() {
-		return eleUtil.waitForElementVisible(viewCartCheckout, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
+
+	public boolean issecureCheckoutBtnExist() {
+		return eleUtil.waitForElementVisible(secureCheckout, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
-	
 
 	// add an item to the cart
 	public void addToCart() {
 		try {
-			//String getElementTextSearchPage = eleUtil.doGetElementText(itemTextSearchPage);
+			// String getElementTextSearchPage =
+			// eleUtil.doGetElementText(itemTextSearchPage);
 			eleUtil.doClick(addCartBtn);
 			Thread.sleep(15000);
-			//String getElementTextOverlaypage = eleUtil.doGetElementText(itemTextOverLay);
-			//eleUtil.stringAsserts(getElementTextSearchPage, getElementTextOverlaypage);
+			// String getElementTextOverlaypage = eleUtil.doGetElementText(itemTextOverLay);
+			// eleUtil.stringAsserts(getElementTextSearchPage, getElementTextOverlaypage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -123,26 +111,76 @@ public class MyCartPage {
 
 	// in the test class call login functionality
 	// and call below method will see how it goes
-	
-	public void hello()
-	{
+
+	public void hello() {
 		System.out.println("this is hello method");
 	}
 
-	public void addItemToCartFlow() {
+	public void addItemToCartFlow(String search) throws InterruptedException {
 		System.out.println("till here");
 		performSearch("63531");
 		addToCart();
 	}
-	
+
 	public void click() throws InterruptedException {
 		System.out.println("I m in MyCartPage click on secure checkout");
-		if (isCheckoutBtnExist()) {
-			
+		if (issecureCheckoutBtnExist()) {
+
 			Thread.sleep(3000);
-			eleUtil.clickElementWhenReady(viewCartCheckout, TimeUtil.DEFAULT_TIME_OUT);
+			eleUtil.clickElementWhenReady(secureCheckout, TimeUtil.DEFAULT_TIME_OUT);
 		}
-		//String className = this.getClass().getName();
+		// String className = this.getClass().getName();
+	}
+	
+	public  CheckOutPage secureClick() throws InterruptedException {
+		System.out.println("I m in MyCartPage click on secure checkout");
+		if (issecureCheckoutBtnExist()) {
+
+			Thread.sleep(3000);
+			eleUtil.clickElementWhenReady(secureCheckout, TimeUtil.DEFAULT_TIME_OUT);
+			return new CheckOutPage(driver);
+			// return null;
+
+		}
+		return null;
+		// String className = this.getClass().getName();
+	}
+
+	public void performSearch(String searchKey) throws InterruptedException {
+		System.out.println("I m in MyCartPage click on secure checkout");
+		if (isSearchExist()) {
+			System.out.println("I am hereisSearchExist");
+			eleUtil.doSendKeys(search, searchKey);
+			// eleUtil.doClick(searchIcon);
+			Thread.sleep(3000);
+			eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
+			
+		}
+		// String className = this.getClass().getName();
+	}
+	// search an item (63531)
+	/*
+	 * public CheckOutPage performSearch(String productName) {
+	 * System.out.println("product search for : " + productName); if
+	 * (isSearchExist()) { eleUtil.doSendKeys(search, productName);
+	 * eleUtil.doClick(searchIcon); return new CheckOutPage(driver); } return null;
+	 * }
+	 */
+
+	public CheckOutPage SKUperformSearch(String productName) throws InterruptedException {
+		System.out.println("product search for : " + productName);
+		System.out.println("About to search SKU and click search");
+		if (isSearchExist()) {
+			System.out.println("I am hereisSearchExist");
+			eleUtil.doSendKeys(search, productName);
+			// eleUtil.doClick(searchIcon);
+			Thread.sleep(3000);
+			eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
+			return new CheckOutPage(driver);
+			// return null;
+
+		}
+		return null;
 	}
 
 }

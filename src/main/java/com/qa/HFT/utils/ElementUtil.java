@@ -300,6 +300,11 @@ public class ElementUtil {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frameLocator));
 	}
+	
+	public void switchToDefaultContentFromFrame(int timeOut) {
+		driver.switchTo().defaultContent();
+		}
+
 
 	public void waitForFramePresentAndSwitch(WebElement frameElement, int timeOut) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
