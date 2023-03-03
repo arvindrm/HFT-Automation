@@ -47,6 +47,9 @@
 			<class name="com.qa.HFT.tests.ProductInfoPageTest">
 				<methods>
 					<exclude name="productImagesTest" />
+					<include name="productHeaderTest" />
+					<include name="productBrandNameTest" />
+					<exclude name="productAddToCartTest" />
 				</methods>
 			</class>
 		</classes>

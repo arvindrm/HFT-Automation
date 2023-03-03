@@ -29,7 +29,7 @@ public class MyCartPageTest extends BaseTest {
 	}
 
 	@Test(dataProvider = "getProductAddToCartTestData")
-	@Description("Verifying Product is Added to cart")
+	@Description("Verifying User is able to add Product is Added to cart and navigate to Checkoutpage")
 	@Severity(SeverityLevel.CRITICAL)
 
 	public void productAddToCartTest(String searchKey) throws InterruptedException {

@@ -26,7 +26,7 @@ public class CheckoutPageTest extends BaseTest{
 	}
 	
 	@Test(dataProvider = "getProductAddToCartTestData")
-	@Description("Verifying Product is Add to cart")
+	@Description("Verifying Product is Added to cart and successfull checkout")
 	@Severity(SeverityLevel.CRITICAL)
 	
 	public void checkOutTest(String searchKey,String firstName, String lastName, String Address, String telephone) throws InterruptedException {
