@@ -64,7 +64,7 @@ public class AccountsPageTest extends BaseTest {
 	@DataProvider
 	 public Object[][] getProductName() { 
 		  return new Object[][] {
-		  {"amazon.com", "Sorry, No Items Were Found."},
+		  {"amazon.com", "Sorry, No Items Were."},
 		  {"lowes.com","Sorry, No Items Were Found."},
 		  {"harborfreight.com" , "Sorry, No Items Were Found."},
 		  {"Air co.presdor", "Sorry, No Items Were Found."},
