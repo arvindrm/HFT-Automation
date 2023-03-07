@@ -14,8 +14,8 @@ public class CheckOutPageGstUsrTest extends BaseTest{
 	
 	@BeforeClass
 	public void accSetup() {
-		//myCartPage = loginPage.doLoginCart(prop.getProperty("username"), prop.getProperty("password"));
-		dfactory.initDriver(prop);
+		myCartPage = loginPage.doLoginCart(prop.getProperty("username"), prop.getProperty("password"));
+		
 	}
 	
 	@DataProvider public Object[][] getProductAddToCartTestData(){

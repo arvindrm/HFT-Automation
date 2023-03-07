@@ -34,7 +34,7 @@ public class CheckoutPageTest extends BaseTest{
 		//myCartPage.addItemToCartFlow();
 		myCartPage.performSearch(searchKey);
 		Thread.sleep(5000);
-		System.out.println("after - performSearch()");
+		System.out.println("after - performSearch()" + searchKey);
 		myCartPage.addCartCheckOutBtn().click();
 		myCartPage.viewCartCheckOutBtn().click();
 		checkOutPage =myCartPage.secureClick();

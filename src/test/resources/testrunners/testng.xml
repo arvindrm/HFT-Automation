@@ -68,7 +68,6 @@
 		</classes>
 	</test>
 	<test name="Checkout Page Test">
-
 		<classes>
 			<class name="com.qa.HFT.tests.CheckoutPageTest">
 			</class>
