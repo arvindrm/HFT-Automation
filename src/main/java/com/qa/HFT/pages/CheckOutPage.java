@@ -151,7 +151,7 @@ public class CheckOutPage {
 	
 	//public WebElements storepaymentcards() {
 		
-	}
+	//}
 	
 	//waitForFramePresentAndSwitch
 	public void switchtoframe() {
