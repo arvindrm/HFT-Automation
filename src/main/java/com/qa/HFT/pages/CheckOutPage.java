@@ -149,7 +149,7 @@ public class CheckOutPage {
 		return eleUtil.waitForElementPresence(ReviewPlaceOrderbtn, TimeUtil.MEDIUM_TIME_OUT);
 	}
 	
-	public WebElements storepaymentcards() {
+	//public WebElements storepaymentcards() {
 		
 	}
 	
