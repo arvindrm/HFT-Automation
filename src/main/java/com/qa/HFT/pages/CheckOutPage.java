@@ -85,6 +85,8 @@ public class CheckOutPage {
 	private By paymentSaveButton = By.xpath("//button[text()='Save & Continue']");
 	private By paymentCCVerify = By.xpath("//div[contains(@class,'cardReminder')]");
 	
+	private By storedpaymentcards = By.xpath("//form/div/div[contains(@class,'stored-cards__card')]");
+	
 	//save payment cards
 	private By paymentCCSaved = By.xpath("//strong[text()='ending in 1111']");
 	
@@ -147,6 +149,10 @@ public class CheckOutPage {
 		return eleUtil.waitForElementPresence(ReviewPlaceOrderbtn, TimeUtil.MEDIUM_TIME_OUT);
 	}
 	
+	public WebElements storepaymentcards() {
+		
+	}
+	
 	//waitForFramePresentAndSwitch
 	public void switchtoframe() {
 		eleUtil.waitForFramePresentAndSwitch(paymentconfirmedframe, TimeUtil.DEFAULT_TIME_OUT);
@@ -174,17 +180,12 @@ public class CheckOutPage {
 		eleUtil.clickElementWhenReady(saveAndContinueBtn, TimeUtil.LARGE_TIME_OUT);
 	}
 	
-	
-	
 	public void paymentconfirmBtn() throws InterruptedException {
 		eleUtil.doSendKeys(paymentconfirmedCCV, "111");
 		Thread.sleep(4000);
 		eleUtil.switchToDefaultContentFromFrame(10);
 		eleUtil.clickElementWhenReady(paymentconfirmedSubmit, TimeUtil.LARGE_TIME_OUT);
 	}
-	
-	
-	
 	
 	public boolean enterShippingAddress(String firstName, String lastName, String Address,String Zipcode, String telephone) {
 		eleUtil.waitForElementVisible(this.shippingFirstName, TimeUtil.DEFAULT_TIME_OUT).sendKeys(firstName);
