@@ -54,6 +54,7 @@ public class MyCartPage {
 	private By itemTextOverLay = By.xpath("//div[@class='overlay__info--TbBupi']/p");
 	private By addToCartOverLay = By.xpath("//a[text()='View Cart & Checkout']");
 	private By secureCheckout = By.xpath("//span[text()='Start Secure Checkout']");
+	//div[contains(@class,'checkout-totals')]/a/span[text()='Start Secure Checkout']
 
 	private By myCartHeader = By.xpath("//div[contains(@class,'cart__main')]/h1");
 	private By myCartSubmit = By.xpath("//div[contains(@class,'checkout-totals')]/a");
@@ -61,6 +62,7 @@ public class MyCartPage {
 	private By myCartProductDelete = By.xpath("//div[contains(@class,'cart-items')]/ul/li[2]/button");
 
 	private By CheckOutPageHeader = By.xpath("//div[contains(@class,'checkout-header')]/div/div/span");
+	private By viewcartcheckout = By.xpath("//div[contains(@class,'checkout-header')]/div/div/span");
 
 	// 2. page constructor:
 	public MyCartPage(WebDriver driver) {
@@ -91,9 +93,15 @@ public class MyCartPage {
 	public boolean issecureCheckoutBtnExist() {
 		return eleUtil.waitForElementVisible(secureCheckout, TimeUtil.DEFAULT_TIME_OUT).isDisplayed();
 	}
-	
+
 	public WebElement addCartCheckOutBtn() {
-		return eleUtil.waitForElementPresence(addCartBtn,TimeUtil.MEDIUM_TIME_OUT);
+		System.out.println("Clicked addCartCheckOutBtn() on PDP");
+		return eleUtil.waitForElementPresence(addCartBtn, TimeUtil.MEDIUM_TIME_OUT);
+	}
+
+	public WebElement viewcartcheckoutBtn() {
+		System.out.println("clicked viewcartcheckoutBtn() on PDP - side panel");
+		return eleUtil.waitForElementPresence(viewcartcheckout, TimeUtil.MEDIUM_TIME_OUT);
 	}
 
 	// add an item to the cart
@@ -111,17 +119,17 @@ public class MyCartPage {
 	}
 
 	public WebElement viewCartCheckOutBtn() {
-		return eleUtil.waitForElementPresence(addToCartOverLay,TimeUtil.MEDIUM_TIME_OUT);
+		System.out.println("Clicked viewCartCheckOutBtn() on PDP - sidepanel");
+		return eleUtil.waitForElementPresence(addToCartOverLay, TimeUtil.MEDIUM_TIME_OUT);
 	}
 
 	// in the test class call login functionality
 	// and call below method will see how it goes
 
-
 	public void addItemToCartFlow(String search) throws InterruptedException {
 		System.out.println("till here");
 		performSearch("63531");
-		//addToCart();
+		// addToCart();
 	}
 
 	public void click() throws InterruptedException {
@@ -133,9 +141,9 @@ public class MyCartPage {
 		}
 		// String className = this.getClass().getName();
 	}
-	
-	public  CheckOutPage secureClick() throws InterruptedException {
-		System.out.println("I m in MyCartPage click on secure checkout");
+
+	public CheckOutPage secureClick() throws InterruptedException {
+		System.out.println("I m in MyCartPage click on secure checkout --added");
 		if (issecureCheckoutBtnExist()) {
 
 			Thread.sleep(3000);
@@ -149,14 +157,14 @@ public class MyCartPage {
 	}
 
 	public void performSearch(String searchKey) throws InterruptedException {
-		System.out.println("I m in MyCartPage click on secure checkout");
+		System.out.println("I m in MyCartPage click on secure checkout(performsearch)");
 		if (isSearchExist()) {
 			System.out.println("I am in perform - SearchExist");
 			eleUtil.doSendKeys(search, searchKey);
 			// eleUtil.doClick(searchIcon);
 			Thread.sleep(3000);
 			eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
-			
+
 		}
 		// String className = this.getClass().getName();
 	}

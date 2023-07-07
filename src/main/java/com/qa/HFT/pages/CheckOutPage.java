@@ -52,7 +52,8 @@ public class CheckOutPage {
 	private By shippingCity = By.id("address-city");
 	private By shippingState = By.id("address-region");
 	private By shippingSaveButton = By.xpath("//button[text()='Save & Continue']");
-	private By shippingAddressConfirmation = By.xpath("//p/strong");
+	//private By shippingAddressConfirmation = By.xpath("//p/strong");
+	private By shippingAddressConfirmation = By.xpath("//div[contains(@class,'checkout-shipping')]/p/strong");
 	// To select a saved address
 	private By shippingAddressSaved = By.xpath("//form/div/div[1]/label");
 	private By shippingAddressEdit = By.id("//*[@id=\"step-title-1\"]/span");
@@ -185,11 +186,12 @@ public class CheckOutPage {
 	
 	
 	
-	public boolean enterShippingAddress(String firstName, String lastName, String Address, String telephone) {
+	public boolean enterShippingAddress(String firstName, String lastName, String Address,String Zipcode, String telephone) {
 		eleUtil.waitForElementVisible(this.shippingFirstName, TimeUtil.DEFAULT_TIME_OUT).sendKeys(firstName);
 		eleUtil.doSendKeys(this.shippingLastName, lastName);
 		eleUtil.doSendKeys(this.shippingAddress, Address);
 		eleUtil.doClick(shippingZipcode);
+		eleUtil.doSendKeys(this.shippingZipcode, Zipcode);
 		eleUtil.doActionsSendKeys(this.shippingPhone, telephone);
 		//eleUtil.doSendKeys(this.confirmpassword, password);
 		//eleUtil.doActionsSendKeys(this.telephone,telephone);
@@ -197,7 +199,7 @@ public class CheckOutPage {
 
 		//System.out.println("Landed on Accounts page after registration");
 
-		String successMesg = eleUtil.waitForElementVisible(shippingAddressConfirmation, TimeUtil.DEFAULT_TIME_OUT).getText();
+		String successMesg = eleUtil.waitForElementVisible(shippingAddressConfirmation, TimeUtil.MEDIUM_TIME_OUT).getText();
 		System.out.println(successMesg);
 
 		if (successMesg.contains("Aravind")) {

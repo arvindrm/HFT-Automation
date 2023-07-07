@@ -7,6 +7,8 @@ import com.qa.HFT.utils.AppConstants;
 import com.qa.HFT.utils.ElementUtil;
 import com.qa.HFT.utils.TimeUtil;
 import com.qa.HFT.pages.RegPage;
+import com.qa.HFT.pages.HomePage;
+
 
 import io.qameta.allure.Step;
 
@@ -22,6 +24,7 @@ public class LoginPage {
 	private By loginBtn = By.xpath("//div[contains(@class,'button')]/button");
 	private By forgotPwdLink = By.xpath("//button[contains(@class,'link')]");
 	private By registernow = By.linkText("Register Now");
+	private By hftlogo = By.xpath("//img[contains(@class,'cms-logo-image')]");
 
 	// 2. page constructor:
 	public LoginPage(WebDriver driver) {
@@ -82,6 +85,13 @@ public class LoginPage {
 		// eleUtil.waitForElementVisible(popup,TimeUtil.DEFAULT_TIME_OUT).click();
 		eleUtil.doClick(registernow);
 		return new RegPage(driver);
+	}
+	
+	@Step("navigating to Homepage")
+	public HomePage navigateToHomePage() {
+		// eleUtil.waitForElementVisible(popup,TimeUtil.DEFAULT_TIME_OUT).click();
+		eleUtil.doClick(hftlogo);
+		return new HomePage(driver);
 	}
 
 }

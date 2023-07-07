@@ -11,69 +11,38 @@
 			class-name="com.qa.HFT.listeners.TestAllureListener" />
 	</listeners>
 
-	<test name="Login Page Test">
+<!-- 	<test name="Login Page Test">
 
 		<classes>
 			<class name="com.qa.HFT.tests.LoginPageTest">
 				<methods>
-					<include name="loginPageTitleTest" />
-					<include name="loginPageURLTest" />
-					<include name="forgotPwdLinkExistTest" />
-					<include name="loginTest" />
+					<exclude name="loginPageTitleTest" />
+					<exclude name="loginPageURLTest" />
+					<exclude name="forgotPwdLinkExistTest" />
+					<exclude name="loginTest" />
 				</methods>
 			</class>
 		</classes>
 
-	</test>
-	<test name="Account Page Test">
+	</test> -->
+	<!-- <test name="Account Page Test">
 
 		<classes>
 			<class name="com.qa.HFT.tests.AccountsPageTest">
 			</class>
 		</classes>
 
-	</test>
-	<test name="Registration Page Test">
+	</test> -->
+	<!-- <test name="Registration Page Test">
 
 		<classes>
 			<class name="com.qa.HFT.tests.RegPageTest">
 			</class>
 		</classes>
 
-	</test>
-	<test name="ProductDescription Page Test">
-
-		<classes>
-			<class name="com.qa.HFT.tests.ProductInfoPageTest">
-				<methods>
-					<exclude name="productImagesTest" />
-					<include name="productHeaderTest" />
-					<include name="productBrandNameTest" />
-					<exclude name="productAddToCartTest" />
-				</methods>
-			</class>
-		</classes>
-
-	</test>
-	<test name="MyCart Page Test">
-
-		<classes>
-			<class name="com.qa.HFT.tests.MyCartPageTest">
-				<methods>
-					<include name="productAddToCartTest" />
-					<include name="productTitleOnMyCartTest" />
-					<exclude name="productsDeleteMyCartTest" />
-				</methods>
-			</class>
-		</classes>
-	</test>
-	<test name="Checkout Page Test">
-		<classes>
-			<class name="com.qa.HFT.tests.CheckoutPageTest">
-			</class>
-		</classes>
-	</test>
+	</test> -->
 	<test name=" HomePage Test">
+
 		<classes>
 			<class name="com.qa.HFT.tests.HomePageTest">
 			<methods>
@@ -93,5 +62,8 @@
 		</classes>
 
 	</test>
+
+
+
 
 </suite>

@@ -7,51 +7,53 @@ import org.testng.annotations.Test;
 
 import com.qa.HFT.base.BaseTest;
 
-
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 
-public class CheckoutPageTest extends BaseTest{
-	
+public class CheckoutPageTest extends BaseTest {
+
 	@BeforeClass
 	public void accSetup() {
 		myCartPage = loginPage.doLoginCart(prop.getProperty("username"), prop.getProperty("password"));
 	}
-	
-	@DataProvider public Object[][] getProductAddToCartTestData(){
-		return new Object[][] {
-			{"57324","Aravind","Mamilapally","599 calle de las ovejas", "3132128989"}
-		};
+
+	@DataProvider
+	public Object[][] getProductAddToCartTestData() {
+		return new Object[][] { { "57324", "Aravind", "Mamilapally", "599 calle de las ovejas","91377", "3132128989" } };
 	}
-	
+
 	@Test(dataProvider = "getProductAddToCartTestData")
 	@Description("Verifying Product is Added to cart and successfull checkout")
 	@Severity(SeverityLevel.CRITICAL)
-	
-	public void checkOutTest(String searchKey,String firstName, String lastName, String Address, String telephone) throws InterruptedException {
-		//myCartPage.hello();
-		//myCartPage.addItemToCartFlow();
+
+	public void checkOutTest(String searchKey, String firstName, String lastName, String Address,String Zipcode, String telephone)
+			throws InterruptedException {
+		// myCartPage.hello();
+		// myCartPage.addItemToCartFlow();
 		myCartPage.performSearch(searchKey);
 		Thread.sleep(5000);
 		System.out.println("after - performSearch()" + searchKey);
 		myCartPage.addCartCheckOutBtn().click();
+		//Thread.sleep(3000);
 		myCartPage.viewCartCheckOutBtn().click();
-		checkOutPage =myCartPage.secureClick();
-		Thread.sleep(3000);
+		//myCartPage.viewcartcheckoutBtn().click();
+		//Thread.sleep(3000);
+		checkOutPage = myCartPage.secureClick();
+		//Thread.sleep(3000);
 		checkOutPage.doCreateAddressClick().click();
-		//checkOutPage=myCartPage.SKUperformSearch(searchKey);
-		//myCartPage.addToCart();
-		//myCartPage.viewCartCheckOutBtn();
-		//checkOutPage.
-		checkOutPage.enterShippingAddress(firstName, lastName, Address, telephone);
+		// checkOutPage=myCartPage.SKUperformSearch(searchKey);
+		// myCartPage.addToCart();
+		// myCartPage.viewCartCheckOutBtn();
+		// checkOutPage.
+		checkOutPage.enterShippingAddress(firstName, lastName, Address,Zipcode, telephone);
 		checkOutPage.doDeliveryMethodClick().click();
 		Thread.sleep(10000);
 		checkOutPage.doPaymentClick().click();
 		Thread.sleep(3000);
 		checkOutPage.switchtoframe();
 		Thread.sleep(3000);
-		
+
 		System.out.println("afterswitchtoframe");
 		checkOutPage.paymentconfirmBtn();
 		System.out.println("afterpaymentconfirmBtn");
@@ -60,10 +62,7 @@ public class CheckoutPageTest extends BaseTest{
 		System.out.println(reviewtxt);
 		checkOutPage.doRewviewClick().click();
 		Thread.sleep(6000);
-		
+
 	}
-	
-	
-	
-	
+
 }

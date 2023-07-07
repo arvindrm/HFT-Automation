@@ -10,6 +10,9 @@ import org.testng.asserts.SoftAssert;
 import com.qa.HFT.factory.DriverFactory;
 import com.qa.HFT.pages.AccountsPage;
 import com.qa.HFT.pages.CheckOutPage;
+import com.qa.HFT.pages.DigitalGiftCards;
+import com.qa.HFT.pages.HomePage;
+import com.qa.HFT.pages.ITCDedicatedPurchase;
 import com.qa.HFT.pages.LoginPage;
 import com.qa.HFT.pages.MyCartPage;
 import com.qa.HFT.pages.ProductInfoPage;
@@ -27,6 +30,9 @@ public class BaseTest {
 	protected MyCartPage myCartPage;
 	protected CheckOutPage checkOutPage;
 	protected RegPage regPage;
+	protected HomePage homePage;
+	protected ITCDedicatedPurchase ITCDedPage;
+	protected DigitalGiftCards giftcards;
 	
 	protected SoftAssert softAssert;
 	
@@ -41,6 +47,7 @@ public class BaseTest {
 		
 		driver = df.initDriver(prop);
 		loginPage = new LoginPage(driver);
+		//ITCDedPage = new ITCDedicatedPurchase(driver);
 		softAssert = new SoftAssert();
 	}
 	
