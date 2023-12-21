@@ -47,6 +47,7 @@ public class ElementUtil {
 
 	public void doSendKeys(By locator, String value) {
 		WebElement ele = getElement(locator);
+		System.out.println("eleutil-- dosendkeys");
 
 		if (ele.isEnabled() & ele.isDisplayed()) {
 			ele.clear();

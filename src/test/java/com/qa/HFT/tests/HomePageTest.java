@@ -31,7 +31,7 @@ public class HomePageTest extends  BaseTest{
 	public void couponlinkExistTest() {
 		String cpntxt = homePage.getcouponslinktxt();
 		System.out.println("Coupon link text is : " + cpntxt);
-		Assert.assertEquals(cpntxt,"Parking Lot Sale");
+		Assert.assertEquals(cpntxt,"Coupons");
 	}
 	
 	@Description("NewToolslink test")

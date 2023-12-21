@@ -69,7 +69,7 @@ public class AccountsPage {
 	}
 
 	public ProductInfoPage SKUperformSearch(String productName) throws InterruptedException {
-		System.out.println("product search for : " + productName);
+		System.out.println("Productinfopage product search for : " + productName);
 		if (isSearchExist()) {
 			eleUtil.doSendKeys(search, productName);
 			// eleUtil.doClick(searchIcon);
