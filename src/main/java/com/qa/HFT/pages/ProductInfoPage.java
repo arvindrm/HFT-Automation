@@ -21,8 +21,10 @@ public class ProductInfoPage {
 
 	// private By productHeader =
 	// By.xpath("//h1[contains(@class,'product__title')]");
-	private By productHeader = By.xpath("//div[contains(@class,'product__info')]/h1");
-	private By productBrand = By.xpath("//div[contains(@class,'product__info')]/h4");
+	//private By productHeader = By.xpath("//div[contains(@class,'product__info')]/h1");
+	private By productHeader = By.xpath("//h1");
+	//private By productBrand = By.xpath("//div[contains(@class,'product__info')]/h4");
+	private By productBrand = By.xpath("//h1/span");
 	private By prodBrandlink = By.xpath("//div[contains(@class,'product__info')]/p/span");
 	private By productMetaData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=1]/li");
 	private By productpriceData = By.xpath("(//div[@id='content']//ul[@class='list-unstyled'])[position()=2]/li");
@@ -105,6 +107,7 @@ public class ProductInfoPage {
 			eleUtil.doSendKeys(search, productName);
 			// eleUtil.doClick(searchIcon);
 			Thread.sleep(3000);
+			System.out.println("About to click searchIcon");
 			eleUtil.clickElementWhenReady(searchIcon, TimeUtil.DEFAULT_TIME_OUT);
 			return new MyCartPage(driver);
 			//return null;

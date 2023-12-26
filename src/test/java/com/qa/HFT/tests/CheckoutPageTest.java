@@ -64,5 +64,48 @@ public class CheckoutPageTest extends BaseTest {
 		Thread.sleep(6000);
 
 	}
+	
+	@Test(dataProvider = "getProductAddToCartTestData")
+	@Description("Verifying Product is Added to cart and successfull checkout")
+	@Severity(SeverityLevel.CRITICAL)
+
+	public void checkOutCCTest(String searchKey, String firstName, String lastName, String Address,String Zipcode, String telephone)
+			throws InterruptedException {
+		
+		// myCartPage.hello();
+		// myCartPage.addItemToCartFlow();
+		myCartPage.performSearch(searchKey);
+		Thread.sleep(5000);
+		System.out.println("after - performSearch()" + searchKey);
+		myCartPage.addCartCheckOutBtn().click();
+		//Thread.sleep(3000);
+		myCartPage.viewCartCheckOutBtn().click();
+		//myCartPage.viewcartcheckoutBtn().click();
+		//Thread.sleep(3000);
+		checkOutPage = myCartPage.secureClick();
+		//Thread.sleep(3000);
+		checkOutPage.doCreateAddressClick().click();
+		// checkOutPage=myCartPage.SKUperformSearch(searchKey);
+		// myCartPage.addToCart();
+		// myCartPage.viewCartCheckOutBtn();
+		// checkOutPage.
+		checkOutPage.enterShippingAddress(firstName, lastName, Address,Zipcode, telephone);
+		checkOutPage.doDeliveryMethodClick().click();
+		Thread.sleep(10000);
+		checkOutPage.doPaymentClick().click();
+		Thread.sleep(3000);
+		checkOutPage.switchtoframe();
+		Thread.sleep(3000);
+
+		System.out.println("afterswitchtoframe");
+		checkOutPage.paymentconfirmBtn();
+		System.out.println("afterpaymentconfirmBtn");
+		Thread.sleep(5000);
+		String reviewtxt = checkOutPage.doRewviewClick().getText();
+		System.out.println(reviewtxt);
+		checkOutPage.doRewviewClick().click();
+		Thread.sleep(6000);
+
+	}
 
 }

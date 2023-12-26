@@ -43,6 +43,7 @@ public class ProductInfoPageTest extends BaseTest {
 		prodInfoPage = accPage.SKUperformSearch(searchkey);
 		// prodInfoPage = resultsPage.selectProduct(searchkey);
 		// Thread.sleep(10000);
+		System.out.println("productheadertest");
 		String actProdTitle = prodInfoPage.getProductHeader();
 		System.out.println("SKU id : " + searchkey + " Title is  : " + actProdTitle);
 		Assert.assertEquals(actProdTitle, prodTitle);
