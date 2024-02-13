@@ -44,9 +44,6 @@
 	<test name="Checkout Page Test">
 		<classes>
 			<class name="com.qa.HFT.tests.CheckoutPageTest">
-				<methods>
-					<include name="checkOutCCTest" />
-				</methods>
 			</class>
 		</classes>
 	</test>

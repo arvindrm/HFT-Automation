@@ -54,6 +54,8 @@ public class DriverFactory {
 
 		getDriver().manage().deleteAllCookies();
 		getDriver().manage().window().maximize();
+		getDriver().get(prop.getProperty("url3"));
+		getDriver().get(prop.getProperty("url2"));
 		getDriver().get(prop.getProperty("url1"));
 		getDriver().get(prop.getProperty("url"));
 
@@ -81,7 +83,7 @@ public class DriverFactory {
 		if (envName == null) {
 			System.out.println("No env is given...hence running it on default QA env....");
 			try {
-				ip = new FileInputStream("./src/test/resources/config/stage.config.properties");
+				ip = new FileInputStream("./src/test/resources/config/stage3.config.properties");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

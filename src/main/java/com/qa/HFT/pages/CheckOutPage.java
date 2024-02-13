@@ -53,6 +53,8 @@ public class CheckOutPage {
 	private By shippingState = By.id("address-region");
 	private By shippingSaveButton = By.xpath("//button[text()='Save & Continue']");
 	//private By shippingAddressConfirmation = By.xpath("//p/strong");
+	private By shippingFedAddressConfirmation = By.xpath("//button[text()='Use this Address']");
+	////div[contains(@class,'checkout-shipping')]/p/strong
 	private By shippingAddressConfirmation = By.xpath("//div[contains(@class,'checkout-shipping')]/p/strong");
 	// To select a saved address
 	private By shippingAddressSaved = By.xpath("//form/div/div[1]/label");
@@ -197,6 +199,9 @@ public class CheckOutPage {
 		//eleUtil.doSendKeys(this.confirmpassword, password);
 		//eleUtil.doActionsSendKeys(this.telephone,telephone);
 		eleUtil.doClick(shippingSaveButton);
+		String Fedex = eleUtil.waitForElementVisible(shippingFedAddressConfirmation,TimeUtil.MEDIUM_TIME_OUT).getText();
+		System.out.println(Fedex);
+
 
 		//System.out.println("Landed on Accounts page after registration");
 
