@@ -19,7 +19,9 @@ public class OptionsManager {
 		co = new ChromeOptions();
 		//co.setBrowserVersion("116");
 		co.addArguments("--remote-allow-origins=*");
+		co.addArguments("--disable-dev-shm-usage");
 		co.addArguments("--no-sandbox");
+
 		if (Boolean.parseBoolean(prop.getProperty("headless"))) {
 			System.out.println(".....Running the test in Headless mode.......");
 			co.setHeadless(true);
