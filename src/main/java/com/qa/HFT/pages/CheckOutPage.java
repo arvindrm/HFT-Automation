@@ -140,7 +140,8 @@ public class CheckOutPage {
 		return eleUtil.waitForElementPresence(shippingAddressCreateNew, TimeUtil.LARGE_TIME_OUT);
 	}
 	public WebElement doDeliveryMethodClick() {
-		return eleUtil.waitForElementPresence(deliverySaveButton, TimeUtil.LARGE_TIME_OUT);
+		//return eleUtil.waitForElementPresence(deliverySaveButton, TimeUtil.MEDIUM_TIME_OUT);
+		return eleUtil.waitForElementPresence(deliveryMethod, TimeUtil.MEDIUM_TIME_OUT);
 	}
 	public WebElement doPaymentClick() {
 		return eleUtil.waitForElementPresence(paymentSaveButton, TimeUtil.LARGE_TIME_OUT);
@@ -199,8 +200,8 @@ public class CheckOutPage {
 		//eleUtil.doSendKeys(this.confirmpassword, password);
 		//eleUtil.doActionsSendKeys(this.telephone,telephone);
 		eleUtil.doClick(shippingSaveButton);
-		String Fedex = eleUtil.waitForElementVisible(shippingFedAddressConfirmation,TimeUtil.MEDIUM_TIME_OUT).getText();
-		System.out.println(Fedex);
+		//String Fedex = eleUtil.waitForElementVisible(shippingFedAddressConfirmation,TimeUtil.MEDIUM_TIME_OUT).getText();
+		//System.out.println(Fedex);
 
 
 		//System.out.println("Landed on Accounts page after registration");

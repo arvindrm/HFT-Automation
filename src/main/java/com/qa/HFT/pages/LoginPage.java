@@ -76,7 +76,7 @@ public class LoginPage {
 		System.out.println("Creds are : " + un + " : " + pwd + "434");
 		eleUtil.waitForElementVisible(emailId, TimeUtil.DEFAULT_TIME_OUT).sendKeys(un);
 		eleUtil.doSendKeys(password, pwd);
-		eleUtil.doClick(loginBtn);
+		eleUtil.clickElementWhenReady(loginBtn,TimeUtil.DEFAULT_TIME_OUT);
 
 		return new MyCartPage(driver);
 	}
