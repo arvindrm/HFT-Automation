@@ -17,7 +17,7 @@ public class OptionsManager {
 
 	public ChromeOptions getChromeOptions() {
 		co = new ChromeOptions();
-		//co.setBrowserVersion("116");
+		co.setBrowserVersion("121");
 		co.addArguments("--remote-allow-origins=*");
 
 		//co.addArguments("--disable-dev-shm-usage");

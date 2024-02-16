@@ -122,7 +122,9 @@ public class DriverFactory {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
+		prop.setProperty("env", envName);
+		prop.setProperty("browser", browserName);
 		
 		return prop;
 	}
