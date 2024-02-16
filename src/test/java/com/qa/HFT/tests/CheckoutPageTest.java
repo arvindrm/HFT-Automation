@@ -74,6 +74,7 @@ public class CheckoutPageTest extends BaseTest {
 		
 		// myCartPage.hello();
 		// myCartPage.addItemToCartFlow();
+		System.out.println("new line");
 		myCartPage.performSearch(searchKey);
 		Thread.sleep(5000);
 		System.out.println("after - performSearch()" + searchKey);
