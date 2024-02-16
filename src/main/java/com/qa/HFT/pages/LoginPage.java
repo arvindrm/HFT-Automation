@@ -1,5 +1,9 @@
 package com.qa.HFT.pages;
 
+#ifndef CONSTANT_1
+#define
+#macro
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
