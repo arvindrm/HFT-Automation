@@ -19,6 +19,8 @@ public class OptionsManager {
 		co = new ChromeOptions();
 		co.setBrowserVersion("121");
 		co.addArguments("--remote-allow-origins=*");
+		co.addArguments("--headless");
+		co.addArguments("start-maximized");
 
 		co.addArguments("--disable-dev-shm-usage");
 		co.addArguments("--no-sandbox");
@@ -26,7 +28,12 @@ public class OptionsManager {
 		if (Boolean.parseBoolean(prop.getProperty("headless"))) {
 			System.out.println(".....Running the test in Headless mode.......");
 			co.setHeadless(true);
-			System.out.println(co.getBrowserVersion());
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(co.getBrowserVersion());
 		}
 		if (Boolean.parseBoolean(prop.getProperty("incognito"))) {
 			System.out.println(".....Running the test in Incognito mode.......");

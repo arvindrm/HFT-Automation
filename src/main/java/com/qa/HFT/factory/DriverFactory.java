@@ -52,13 +52,11 @@ public class DriverFactory {
 			System.out.println("Please pass the right browser name...." + browserName);
 		}
 
-		//getDriver().manage().deleteAllCookies();
+		getDriver().manage().deleteAllCookies();
 		//getDriver().manage().window().maximize();
-		getDriver().get(prop.getProperty("url3"));
-		getDriver().get(prop.getProperty("url2"));
 		getDriver().get(prop.getProperty("url1"));
 		getDriver().get(prop.getProperty("url"));
-		getDriver().manage().deleteAllCookies();
+		//getDriver().manage().deleteAllCookies();
 		getDriver().manage().window().maximize();
 
 		return getDriver();
@@ -85,7 +83,7 @@ public class DriverFactory {
 		if (envName == null) {
 			System.out.println("No env is given...hence running it on default QA env....");
 			try {
-				ip = new FileInputStream("./src/test/resources/config/stage3.config.properties");
+				ip = new FileInputStream("./src/test/resources/config/stage.config.properties");
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

@@ -23,7 +23,7 @@ public class LoginPage {
 	private By popup = By.xpath("//div[contains(@class,'dy-lb-close')]");
 	private By emailId = By.id("login-email");
 	private By password = By.id("login-password");
-	private By loginBtn = By.xpath("//div[contains(@class,'button')]/button");
+	private By loginBtn = By.xpath("//div[contains(@class,'button')]/button[1]");
 	private By forgotPwdLink = By.xpath("//button[contains(@class,'link')]");
 	private By registernow = By.linkText("Register Now");
 	private By hftlogo = By.xpath("//img[contains(@class,'cms-logo-image')]");
@@ -78,7 +78,8 @@ public class LoginPage {
 		System.out.println("Creds are : " + un + " : " + pwd + "434");
 		eleUtil.waitForElementVisible(emailId, TimeUtil.DEFAULT_TIME_OUT).sendKeys(un);
 		eleUtil.doSendKeys(password, pwd);
-		eleUtil.clickElementWhenReady(loginBtn,TimeUtil.DEFAULT_TIME_OUT);
+		//eleUtil.clickElementWhenReady(loginBtn,TimeUtil.LARGE_TIME_OUT);
+		eleUtil.waitForElementToBeVisibleWithFluentWait(loginBtn,TimeUtil.LARGE_TIME_OUT,30);
 
 		return new MyCartPage(driver);
 	}
